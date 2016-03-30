@@ -27,8 +27,8 @@
         android:id="@+id/textView"
         android:textColor="#ffffff"
         android:typeface="serif"
-        android:layout_alignBaseline="@+id/button2"
-        android:layout_alignBottom="@+id/button2"
+        android:layout_alignBaseline="@+id/btnFingerPrint"
+        android:layout_alignBottom="@+id/btnFingerPrint"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="10dp" />
 
@@ -42,8 +42,8 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Use Fingerprint"
-            android:id="@+id/button2"
-            android:layout_below="@+id/button"
+            android:id="@+id/btnFingerPrint"
+            android:layout_below="@+id/btnLogIn"
             android:layout_centerHorizontal="true"
             android:layout_gravity="center_horizontal" />
 
@@ -51,7 +51,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Login"
-            android:id="@+id/button"
+            android:id="@+id/btnLogIn"
             android:layout_centerVertical="true"
             android:layout_centerHorizontal="true"
             android:layout_gravity="center_horizontal" />
