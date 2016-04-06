@@ -29,6 +29,7 @@
             android:name="haseley.abby.info_security_password_creator_and_manager.PasswordViewer"
             android:label="@string/title_activity_password_viewer"
             android:theme="@style/AppTheme.NoActionBar" />
+        <activity android:name="haseley.abby.info_security_password_creator_and_manager.PasswordDetails" />
     </application>
 
 </manifest>

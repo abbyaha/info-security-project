@@ -22,7 +22,8 @@
         <activity
             android:name=".PasswordViewer"
             android:label="@string/title_activity_password_viewer"
-            android:theme="@style/AppTheme.NoActionBar"></activity>
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity android:name=".PasswordDetails"></activity>
     </application>
 
 </manifest>
