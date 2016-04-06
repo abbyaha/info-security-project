@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -15,30 +16,34 @@ public class LogIn extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        Log.d("Login", "Entered onCreate");
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_log_in);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
-
+        Log.d("Login", "About to make buttons");
         LoginButton = (Button) findViewById(R.id.btnLogIn);
         LoginButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 //TODO: This may be removed if we only do finger print support
+                Log.d("Login", "Entered Login's onClick");
                 goToPasswordView();
             }
         });
-
+        Log.d("Login", "Finished LogIn, making FingerPrint");
         FingerPrintButton = (Button) findViewById(R.id.btnFingerPrint);
         FingerPrintButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 //TODO: Go look for the correct fingerprint, then go to Password list
+                Log.d("Login", "Entered Fingerprint's onClick");
             }
         });
     }
 
     private void goToPasswordView(){
+        Log.d("Login", "About to make an intent");
         Intent intent = new Intent(this, PasswordViewer.class);
         startActivity(intent);
     }
