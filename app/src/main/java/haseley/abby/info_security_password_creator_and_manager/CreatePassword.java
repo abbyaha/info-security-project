@@ -6,6 +6,8 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.TextView;
+import android.widget.Toast;
 
 public class CreatePassword extends AppCompatActivity {
 
@@ -15,11 +17,24 @@ public class CreatePassword extends AppCompatActivity {
         setContentView(R.layout.activity_create_password);
 
 
-        Button CreateButton = (Button) findViewById(R.id.btnCreatePass);
-        CreateButton.setOnClickListener(new View.OnClickListener() {
+        Button GenerateButton = (Button) findViewById(R.id.btnCreatePass);
+        GenerateButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 makePassword();
+            }
+        });
+
+        Button AcceptButton = (Button) findViewById(R.id.btnAccept);
+        AcceptButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                EditText accountField = (EditText) findViewById(R.id.txtAccount);
+                String accountName = accountField.getText().toString();
+                //TODO: Add password/account to the database
+
+                Toast.makeText(getApplicationContext(), "Password Created", Toast.LENGTH_SHORT).show();
+                //TODO: Go back to list
             }
         });
     }
@@ -41,6 +56,9 @@ public class CreatePassword extends AppCompatActivity {
         String sentence = sentenceField.getText().toString();
 
         //TODO: Generate a Password from input
-        //TODO: Add password to the database
+
+        TextView resultField = (TextView) findViewById(R.id.txtPassword);
+        //TODO: Put the generated password here
+        resultField.setText("Put a password here");
     }
 }
