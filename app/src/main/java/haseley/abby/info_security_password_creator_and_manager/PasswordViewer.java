@@ -4,18 +4,19 @@ import android.app.ListActivity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
-import android.support.design.widget.Snackbar;
-import android.support.v7.app.AppCompatActivity;
-import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import android.widget.TextView;
-import android.widget.Toast;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class PasswordViewer extends ListActivity {
+    List<TempPassword> passwords = new ArrayList<TempPassword>();
+    ListView listView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -23,27 +24,17 @@ public class PasswordViewer extends ListActivity {
         setContentView(R.layout.activity_password_viewer);
 
         //Grab the list view
-        ListView listView = getListView();
+        listView = getListView();
         //ListView listView1 = (ListView) findViewById(R.id.listView1);
 
-        //Temporary: Testing list view with an object type
-        TempPassword[] temps = {
-                new TempPassword("OSU", "This is a sentence", "Pass1"),
-                new TempPassword("EMAIL", "This is another sentence", "Pass2"),
-                new TempPassword("YOUTUBE","This is a third sentence", "Pass3"),
-                new TempPassword("BANK", "This is also a sentence", "Pass4"),
-                new TempPassword("LAPTOP", "This is yet another sentence", "Pass5"),
-        };
+        getPasswords();
 
         ArrayAdapter<TempPassword> adapter = new ArrayAdapter<>(listView.getContext(),
-                android.R.layout.simple_list_item_1, temps);
+                android.R.layout.simple_list_item_1, passwords);
 
+        listView.setAdapter(adapter);
 
-        //String[] accounts = {"OSU", "EMAIL"};
-        //ArrayAdapter<String> adapter = new ArrayAdapter<>(getListView().getContext(), android.R.layout.simple_list_item_1, accounts);
-        getListView().setAdapter(adapter);
-
-        //Tset the listener for clicking an item
+        //Set the listener for clicking an item
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position,
@@ -51,30 +42,58 @@ public class PasswordViewer extends ListActivity {
                 //Finding which item was clicked?
                 String item = ((TextView) view).getText().toString();
 
-                //TODO: Find out which password this was based on the text...
+                //Find out which password this was based on the text...
+                TempPassword password = findItemByString(item);
 
                 Bundle b = new Bundle();
-                b.putString("Account", "This is the Account");
-                b.putString("Sentence", "This is the Sentence.");
-                b.putString("Password", "This is the Password");
+                b.putString("Account", password.getAccount());
+                b.putString("Sentence", password.getSentence());
+                b.putString("Password", password.getPassword());
                 goToPasswordDetails(b);
             }
         });
-        //Replace/remove and make a New Password button
+        //New Password button
         FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-                        .setAction("Action", null).show();
+                goToPasswordCreator();
             }
         });
+    }
+
+    private  void getPasswords(){
+        //TODO: Replace with accessing the database
+        passwords.add(new TempPassword("OSU", "This is a sentence", "Pass1"));
+        passwords.add(new TempPassword("EMAIL", "This is another sentence", "Pass2"));
+        passwords.add(new TempPassword("YOUTUBE", "This is a third sentence", "Pass3"));
+        passwords.add(new TempPassword("BANK", "This is also a sentence", "Pass4"));
+        passwords.add(new TempPassword("LAPTOP", "This is yet another sentence", "Pass5"));
+    }
+
+    //Helper method
+    private TempPassword findItemByString(String itemToString){
+        TempPassword result = null;
+
+        for(TempPassword p : passwords){
+            if(p.toString().equalsIgnoreCase(itemToString)){
+                result = p;
+                break;
+            }
+        }
+
+        return result;
     }
 
     private void goToPasswordDetails(Bundle b){
         Log.d("Viewer", "About to make an intent for password details");
         Intent intent = new Intent(this, PasswordDetails.class);
         intent.putExtras(b);
+        startActivity(intent);
+    }
+
+    private void goToPasswordCreator(){
+        Intent intent = new Intent(this, CreatePassword.class);
         startActivity(intent);
     }
 }
