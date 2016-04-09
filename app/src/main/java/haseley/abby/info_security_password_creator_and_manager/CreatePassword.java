@@ -61,4 +61,10 @@ public class CreatePassword extends AppCompatActivity {
         //TODO: Put the generated password here
         resultField.setText("Put a password here");
     }
+
+    @Override
+    public void onPause(){
+        super.onPause();
+        finish();
+    }
 }
