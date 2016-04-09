@@ -1,6 +1,10 @@
 [
     {
-        "merged": "C:\\Users\\Jewel\\StudioProjects\\info-security-project\\app\\build\\intermediates\\res\\merged\\debug\\mipmap-xhdpi-v4\\ic_launcher.png",
-        "source": "C:\\Users\\Jewel\\StudioProjects\\info-security-project\\app\\src\\main\\res\\mipmap-xhdpi\\ic_launcher.png"
+        "merged": "/Users/Abby/Desktop/Info Security/info-security-project/C:\\Users\\Jewel\\StudioProjects\\info-security-project\\app\\build\\intermediates\\res\\merged\\debug\\mipmap-xhdpi-v4\\ic_launcher.png",
+        "source": "/Users/Abby/Desktop/Info Security/info-security-project/C:\\Users\\Jewel\\StudioProjects\\info-security-project\\app\\src\\main\\res\\mipmap-xhdpi\\ic_launcher.png"
+    },
+    {
+        "merged": "/Users/Abby/Desktop/Info Security/info-security-project/app/build/intermediates/res/merged/debug/mipmap-xhdpi-v4/ic_launcher.png",
+        "source": "/Users/Abby/Desktop/Info Security/info-security-project/app/src/main/res/mipmap-xhdpi/ic_launcher.png"
     }
 ]
