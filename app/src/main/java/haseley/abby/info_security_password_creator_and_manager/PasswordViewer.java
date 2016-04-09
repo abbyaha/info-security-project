@@ -61,10 +61,20 @@ public class PasswordViewer extends ListActivity {
 
         getPasswordsFromFile();
 
-        ArrayAdapter<PasswordEntry> adapter = new ArrayAdapter<>(listView.getContext(),
-                android.R.layout.simple_list_item_1, passwords);
+        ArrayAdapter<PasswordEntry> adapter = new WWAdapater(listView.getContext(),
+                android.R.layout.simple_list_item_1, makeArray(passwords));
 
         listView.setAdapter(adapter);
+    }
+
+    private PasswordEntry[] makeArray(List<PasswordEntry> list){
+        PasswordEntry[] array = new PasswordEntry[list.size()];
+
+        for(int i =0; i < list.size(); i++){
+            array[i] = list.get(i);
+        }
+
+        return array;
     }
 
     @Override
