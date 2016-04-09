@@ -9,13 +9,16 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class CreatePassword extends AppCompatActivity {
 
+    ArrayList<PasswordEntry> passwords = new ArrayList<>();
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_create_password);
-
 
         Button GenerateButton = (Button) findViewById(R.id.btnCreatePass);
         GenerateButton.setOnClickListener(new View.OnClickListener() {
@@ -29,9 +32,19 @@ public class CreatePassword extends AppCompatActivity {
         AcceptButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                //Get the account to save
                 EditText accountField = (EditText) findViewById(R.id.txtAccount);
                 String accountName = accountField.getText().toString();
-                //TODO: Add password/account to the database
+                //Get the sentence to save
+                EditText sentenceField = (EditText) findViewById(R.id.txtSentence);
+                String sentence = sentenceField.getText().toString();
+                //Get the password to save
+                TextView resultField = (TextView) findViewById(R.id.txtPassword);
+                String password = resultField.getText().toString();
+                //Package the info in an entry
+                PasswordEntry entry = new PasswordEntry(accountName, sentence, password);
+                //Add the entry to the database
+                addEntry(entry);
 
                 Toast.makeText(getApplicationContext(), "Password Created", Toast.LENGTH_SHORT).show();
                 //TODO: Go back to list
@@ -62,6 +75,25 @@ public class CreatePassword extends AppCompatActivity {
         resultField.setText("Put a password here");
     }
 
+    private void addEntry(PasswordEntry entry){
+        getPasswordsFromFile();
+
+        passwords.add(entry);
+
+        try {
+            PasswordFile.encryptStore(getApplicationContext(), "WhiteWizard", "MyDifficultPassw", passwords);
+        } catch(Exception e){
+            //TODO: Uh?
+        }
+    }
+
+    private void getPasswordsFromFile(){
+        try {
+            passwords = PasswordFile.decryptStore(getApplicationContext(), "WhiteWizard", "MyDifficultPassw");
+        } catch(Exception e){
+            //TODO: Uh?
+        }
+    }
     @Override
     public void onPause(){
         super.onPause();
