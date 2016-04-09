@@ -51,6 +51,26 @@ public class CreatePassword extends AppCompatActivity {
                 //TODO: Go back to list
             }
         });
+
+        final Button genSentence = (Button) findViewById(R.id.btnGenerateSentence);
+        genSentence.setOnClickListener(new Button.OnClickListener() {
+            public void onClick(View v) {
+
+                Log.d("Password creation --->","Generating sentence");
+                generateSentence();
+
+            }
+        });
+
+        Button genPassword = (Button) findViewById(R.id.btnCreatePass);
+        genPassword.setOnClickListener(new Button.OnClickListener() {
+            public void onClick(View v) {
+
+                Log.d("Password creation --->","Generating password");
+                generatePassword();
+
+            }
+        });
     }
 
     private  void makePassword(){
@@ -107,5 +127,13 @@ public class CreatePassword extends AppCompatActivity {
     public void onPause(){
         super.onPause();
         finish();
+    }
+
+    public void generateSentence(){
+
+    }
+
+    public void generatePassword(){
+
     }
 }
