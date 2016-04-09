@@ -1,5 +1,6 @@
 package haseley.abby.info_security_password_creator_and_manager;
 
+import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
@@ -94,6 +95,14 @@ public class CreatePassword extends AppCompatActivity {
             //TODO: Uh?
         }
     }
+
+    @Override
+    public void onBackPressed() {
+        Intent intent = new Intent(this, PasswordViewer.class);
+        startActivity(intent);
+        finish();
+    }
+
     @Override
     public void onPause(){
         super.onPause();
