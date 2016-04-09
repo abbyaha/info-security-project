@@ -15,6 +15,12 @@ import java.util.List;
 
 public class CreatePassword extends AppCompatActivity {
 
+    int numUpperCase;
+    int numLowerCase;
+    int numNumbers;
+    int passwordLength;
+    String sentence;
+
     ArrayList<PasswordEntry> passwords = new ArrayList<>();
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -75,19 +81,19 @@ public class CreatePassword extends AppCompatActivity {
 
     private  void makePassword(){
         EditText upperField = (EditText) findViewById(R.id.txtNumUpperCase);
-        int numUpperCase = Integer.parseInt(upperField.getText().toString());
+        numUpperCase = Integer.parseInt(upperField.getText().toString());
 
         EditText lowerField = (EditText) findViewById(R.id.txtNumLowerCase);
-        int numLowerCase = Integer.parseInt(lowerField.getText().toString());
+        numLowerCase = Integer.parseInt(lowerField.getText().toString());
 
         EditText numsField = (EditText) findViewById(R.id.txtNumNumbers);
-        int numNumbers = Integer.parseInt(numsField.getText().toString());
+        numNumbers = Integer.parseInt(numsField.getText().toString());
 
         EditText lengthField = (EditText) findViewById(R.id.txtPassLength);
-        int passwordLength = Integer.parseInt(lengthField.getText().toString());
+        passwordLength = Integer.parseInt(lengthField.getText().toString());
 
         EditText sentenceField = (EditText) findViewById(R.id.txtSentence);
-        String sentence = sentenceField.getText().toString();
+        sentence = sentenceField.getText().toString();
 
         //TODO: Generate a Password from input
 
@@ -130,10 +136,12 @@ public class CreatePassword extends AppCompatActivity {
     }
 
     public void generateSentence(){
-
+        TextView sentenceField = (TextView) findViewById(R.id.txtSentence);
+        sentenceField.setText("New sentence");
     }
 
     public void generatePassword(){
-
+        TextView resultField = (TextView) findViewById(R.id.txtPassword);
+        resultField.setText("Put a password here");
     }
 }
