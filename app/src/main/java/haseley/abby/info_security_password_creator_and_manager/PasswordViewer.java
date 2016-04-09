@@ -96,4 +96,9 @@ public class PasswordViewer extends ListActivity {
         Intent intent = new Intent(this, CreatePassword.class);
         startActivity(intent);
     }
+    @Override
+    public void onPause(){
+        super.onPause();
+        finish();
+    }
 }

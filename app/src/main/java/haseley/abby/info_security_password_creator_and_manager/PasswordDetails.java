@@ -26,4 +26,10 @@ public class PasswordDetails extends AppCompatActivity {
         //sentenceText.setText("P@$$W0RD");
         passwordText.setText(bundle.getString("Password"));
     }
+
+    @Override
+    public void onPause(){
+        super.onPause();
+        finish();
+    }
 }
