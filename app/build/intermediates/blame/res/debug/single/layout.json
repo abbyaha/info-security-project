@@ -40,12 +40,12 @@
         "source": "C:\\Users\\Jewel\\StudioProjects\\info-security-project\\app\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\23.1.1\\res\\layout\\abc_alert_dialog_material.xml"
     },
     {
-        "merged": "C:\\Users\\Jewel\\StudioProjects\\info-security-project\\app\\build\\intermediates\\res\\merged\\debug\\layout\\abc_activity_chooser_view_list_item.xml",
-        "source": "C:\\Users\\Jewel\\StudioProjects\\info-security-project\\app\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\23.1.1\\res\\layout\\abc_activity_chooser_view_list_item.xml"
-    },
-    {
         "merged": "C:\\Users\\Jewel\\StudioProjects\\info-security-project\\app\\build\\intermediates\\res\\merged\\debug\\layout\\abc_action_bar_title_item.xml",
         "source": "C:\\Users\\Jewel\\StudioProjects\\info-security-project\\app\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\23.1.1\\res\\layout\\abc_action_bar_title_item.xml"
+    },
+    {
+        "merged": "C:\\Users\\Jewel\\StudioProjects\\info-security-project\\app\\build\\intermediates\\res\\merged\\debug\\layout\\abc_activity_chooser_view_list_item.xml",
+        "source": "C:\\Users\\Jewel\\StudioProjects\\info-security-project\\app\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\23.1.1\\res\\layout\\abc_activity_chooser_view_list_item.xml"
     },
     {
         "merged": "C:\\Users\\Jewel\\StudioProjects\\info-security-project\\app\\build\\intermediates\\res\\merged\\debug\\layout\\design_navigation_menu.xml",

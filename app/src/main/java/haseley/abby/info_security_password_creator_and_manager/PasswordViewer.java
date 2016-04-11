@@ -34,7 +34,6 @@ public class PasswordViewer extends ListActivity {
                 String item = ((TextView) view).getText().toString();
 
                 //Find out which password this was based on the text...
-                //TempPassword password = findItemByString(item);
                 PasswordEntry password = findItemByString(item);
 
                 Bundle b = new Bundle();
@@ -61,7 +60,7 @@ public class PasswordViewer extends ListActivity {
 
         getPasswordsFromFile();
 
-        ArrayAdapter<PasswordEntry> adapter = new WWAdapater(listView.getContext(),
+        ArrayAdapter<PasswordEntry> adapter = new WWAdapter(listView.getContext(),
                 android.R.layout.simple_list_item_1, makeArray(passwords));
 
         listView.setAdapter(adapter);
