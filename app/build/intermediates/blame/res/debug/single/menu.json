@@ -1,6 +1,10 @@
 [
     {
-        "merged": "C:\\Users\\Jewel\\StudioProjects\\info-security-project\\app\\build\\intermediates\\res\\merged\\debug\\menu\\menu_log_in.xml",
-        "source": "C:\\Users\\Jewel\\StudioProjects\\info-security-project\\app\\src\\main\\res\\menu\\menu_log_in.xml"
+        "merged": "/Users/Daniele/Documents/OSU/Spring 2016/CSE 4471/info-security-project/app/build/intermediates/res/merged/debug/menu/menu_log_in.xml",
+        "source": "/Users/Daniele/Documents/OSU/Spring 2016/CSE 4471/info-security-project/app/src/main/res/menu/menu_log_in.xml"
+    },
+    {
+        "merged": "/Users/Daniele/Documents/OSU/Spring 2016/CSE 4471/info-security-project/C:\\Users\\Jewel\\StudioProjects\\info-security-project\\app\\build\\intermediates\\res\\merged\\debug\\menu\\menu_log_in.xml",
+        "source": "/Users/Daniele/Documents/OSU/Spring 2016/CSE 4471/info-security-project/C:\\Users\\Jewel\\StudioProjects\\info-security-project\\app\\src\\main\\res\\menu\\menu_log_in.xml"
     }
 ]
