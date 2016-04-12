@@ -1,4 +1,27 @@
+
+
 apply plugin: 'com.android.application'
+apply plugin: 'com.neenbedankt.android-apt'
+
+repositories {
+    jcenter()
+}
+
+dependencies {
+    compile fileTree(dir: 'libs', include: ['*.jar'])
+    testCompile 'junit:junit:4.12'
+    compile 'com.android.support:appcompat-v7:23.1.1'
+    compile 'com.android.support:design:23.1.1'
+    //apt 'com.google.dagger:dagger-compiler:2.2'
+    //compile 'com.google.dagger:dagger:2.2'
+    //provided 'javax.annotation:jsr250-api:1.0'
+    apt 'com.squareup.dagger:dagger:1.2.2'
+    apt 'com.squareup.dagger:dagger-compiler:1.2.2'
+    compile 'com.squareup.dagger:dagger:1.2.2'
+    compile 'com.squareup.dagger:dagger-compiler:1.2.2'
+    compile 'javax.inject:javax.inject:1'
+
+}
 
 android {
     compileSdkVersion 23
@@ -6,7 +29,7 @@ android {
 
     defaultConfig {
         applicationId "haseley.abby.info_security_password_creator_and_manager"
-        minSdkVersion 8
+        minSdkVersion 23
         targetSdkVersion 23
         versionCode 1
         versionName "1.0"
@@ -17,11 +40,4 @@ android {
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
     }
-}
-
-dependencies {
-    compile fileTree(dir: 'libs', include: ['*.jar'])
-    testCompile 'junit:junit:4.12'
-    compile 'com.android.support:appcompat-v7:23.1.1'
-    compile 'com.android.support:design:23.1.1'
 }
