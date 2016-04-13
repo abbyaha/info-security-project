@@ -2340,8 +2340,8 @@ containing a value of this type.
         public static final int top=0x7f0c0025;
         public static final int topPanel=0x7f0c0047;
         public static final int txtAccount=0x7f0c006b;
-        public static final int txtNumLowerCase=0x7f0c0073;
         public static final int txtNumNumbers=0x7f0c0071;
+        public static final int txtNumSpecialChars=0x7f0c0073;
         public static final int txtNumUpperCase=0x7f0c006f;
         public static final int txtPass=0x7f0c007b;
         public static final int txtPassLength=0x7f0c006d;

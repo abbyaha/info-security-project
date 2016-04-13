@@ -694,8 +694,8 @@ int id toolbar 0x7f0c007a
 int id top 0x7f0c0025
 int id topPanel 0x7f0c0047
 int id txtAccount 0x7f0c006b
-int id txtNumLowerCase 0x7f0c0073
 int id txtNumNumbers 0x7f0c0071
+int id txtNumSpecialChars 0x7f0c0073
 int id txtNumUpperCase 0x7f0c006f
 int id txtPass 0x7f0c007b
 int id txtPassLength 0x7f0c006d

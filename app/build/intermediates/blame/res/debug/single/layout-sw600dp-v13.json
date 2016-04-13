@@ -1,10 +1,14 @@
 [
     {
-        "merged": "/Users/Daniele/Documents/OSU/Spring 2016/CSE 4471/info-security-project/app/build/intermediates/res/merged/debug/layout-sw600dp-v13/design_layout_snackbar.xml",
-        "source": "/Users/Daniele/Documents/OSU/Spring 2016/CSE 4471/info-security-project/app/build/intermediates/exploded-aar/com.android.support/design/23.1.1/res/layout-sw600dp/design_layout_snackbar.xml"
-    },
-    {
         "merged": "/Users/Daniele/Documents/OSU/Spring 2016/CSE 4471/info-security-project/C:\\Users\\Jewel\\StudioProjects\\info-security-project\\app\\build\\intermediates\\res\\merged\\debug\\layout-sw600dp-v13\\design_layout_snackbar.xml",
         "source": "/Users/Daniele/Documents/OSU/Spring 2016/CSE 4471/info-security-project/C:\\Users\\Jewel\\StudioProjects\\info-security-project\\app\\build\\intermediates\\exploded-aar\\com.android.support\\design\\23.1.1\\res\\layout-sw600dp\\design_layout_snackbar.xml"
+    },
+    {
+        "merged": "/Users/Abby/Desktop/Info Security/info-security-project/app/build/intermediates/res/merged/debug/layout-sw600dp-v13/design_layout_snackbar.xml",
+        "source": "/Users/Abby/Desktop/Info Security/info-security-project/app/build/intermediates/exploded-aar/com.android.support/design/23.1.1/res/layout-sw600dp/design_layout_snackbar.xml"
+    },
+    {
+        "merged": "/Users/Daniele/Documents/OSU/Spring 2016/CSE 4471/info-security-project/app/build/intermediates/res/merged/debug/layout-sw600dp-v13/design_layout_snackbar.xml",
+        "source": "/Users/Daniele/Documents/OSU/Spring 2016/CSE 4471/info-security-project/app/build/intermediates/exploded-aar/com.android.support/design/23.1.1/res/layout-sw600dp/design_layout_snackbar.xml"
     }
 ]

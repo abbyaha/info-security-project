@@ -11,15 +11,15 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import java.util.ArrayList;
-import java.util.List;
 
 public class CreatePassword extends AppCompatActivity {
 
     int numUpperCase;
-    int numLowerCase;
+    int numSpecial;
     int numNumbers;
     int passwordLength;
     String sentence;
+    String password;
 
     ArrayList<PasswordEntry> passwords = new ArrayList<>();
     @Override
@@ -47,7 +47,7 @@ public class CreatePassword extends AppCompatActivity {
                 String sentence = sentenceField.getText().toString();
                 //Get the password to save
                 TextView resultField = (TextView) findViewById(R.id.txtPassword);
-                String password = resultField.getText().toString();
+                password = resultField.getText().toString();
                 //Package the info in an entry
                 PasswordEntry entry = new PasswordEntry(accountName, sentence, password);
                 //Add the entry to the database
@@ -83,8 +83,8 @@ public class CreatePassword extends AppCompatActivity {
         EditText upperField = (EditText) findViewById(R.id.txtNumUpperCase);
         numUpperCase = Integer.parseInt(upperField.getText().toString());
 
-        EditText lowerField = (EditText) findViewById(R.id.txtNumLowerCase);
-        numLowerCase = Integer.parseInt(lowerField.getText().toString());
+        EditText specialField = (EditText) findViewById(R.id.txtNumSpecialChars);
+        numSpecial = Integer.parseInt(specialField.getText().toString());
 
         EditText numsField = (EditText) findViewById(R.id.txtNumNumbers);
         numNumbers = Integer.parseInt(numsField.getText().toString());
@@ -95,11 +95,7 @@ public class CreatePassword extends AppCompatActivity {
         EditText sentenceField = (EditText) findViewById(R.id.txtSentence);
         sentence = sentenceField.getText().toString();
 
-        //TODO: Generate a Password from input
-
         TextView resultField = (TextView) findViewById(R.id.txtPassword);
-        //TODO: Put the generated password here
-        resultField.setText("Put a password here");
     }
 
     private void addEntry(PasswordEntry entry){
@@ -137,11 +133,13 @@ public class CreatePassword extends AppCompatActivity {
 
     public void generateSentence(){
         TextView sentenceField = (TextView) findViewById(R.id.txtSentence);
-        sentenceField.setText("New sentence");
+        sentence = GenerateSentence.createSentence();
+        sentenceField.setText(sentence);
     }
 
     public void generatePassword(){
         TextView resultField = (TextView) findViewById(R.id.txtPassword);
-        resultField.setText("Put a password here");
+        password = GeneratePassword.createPassword(passwordLength, numUpperCase, numSpecial, numNumbers);
+        resultField.setText(password);
     }
 }
