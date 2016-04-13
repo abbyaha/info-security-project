@@ -1,7 +1,10 @@
 package haseley.abby.info_security_password_creator_and_manager;
 
+import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
+import android.view.KeyEvent;
 import android.widget.TextView;
 
 public class PasswordDetails extends AppCompatActivity {
@@ -25,6 +28,13 @@ public class PasswordDetails extends AppCompatActivity {
         TextView passwordText = (TextView)findViewById(R.id.txtPass);
         //sentenceText.setText("P@$$W0RD");
         passwordText.setText(bundle.getString("Password"));
+    }
+
+    @Override
+    public void onBackPressed() {
+        Intent intent = new Intent(this, PasswordViewer.class);
+        startActivity(intent);
+        finish();
     }
 
     @Override

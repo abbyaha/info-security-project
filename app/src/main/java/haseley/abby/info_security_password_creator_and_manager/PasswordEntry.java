@@ -41,4 +41,8 @@ public final class PasswordEntry implements Serializable {
     public String getPassword() {
         return password;
     }
+    @Override
+    public String toString() {
+        return "Account : " + this.account;
+    }
 }
