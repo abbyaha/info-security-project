@@ -1,11 +1,11 @@
 [
     {
-        "merged": "/Users/Daniele/Documents/OSU/Spring 2016/CSE 4471/info-security-project/C:\\Users\\Jewel\\StudioProjects\\info-security-project\\app\\build\\intermediates\\res\\merged\\debug\\layout\\design_layout_snackbar.xml",
-        "source": "/Users/Daniele/Documents/OSU/Spring 2016/CSE 4471/info-security-project/C:\\Users\\Jewel\\StudioProjects\\info-security-project\\app\\build\\intermediates\\exploded-aar\\com.android.support\\design\\23.1.1\\res\\layout\\design_layout_snackbar.xml"
-    },
-    {
         "merged": "/Users/Daniele/Documents/OSU/Spring 2016/CSE 4471/info-security-project/app/build/intermediates/res/merged/debug/layout/abc_dialog_title_material.xml",
         "source": "/Users/Daniele/Documents/OSU/Spring 2016/CSE 4471/info-security-project/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/23.1.1/res/layout/abc_dialog_title_material.xml"
+    },
+    {
+        "merged": "/Users/Daniele/Documents/OSU/Spring 2016/CSE 4471/info-security-project/C:\\Users\\Jewel\\StudioProjects\\info-security-project\\app\\build\\intermediates\\res\\merged\\debug\\layout\\design_layout_snackbar.xml",
+        "source": "/Users/Daniele/Documents/OSU/Spring 2016/CSE 4471/info-security-project/C:\\Users\\Jewel\\StudioProjects\\info-security-project\\app\\build\\intermediates\\exploded-aar\\com.android.support\\design\\23.1.1\\res\\layout\\design_layout_snackbar.xml"
     },
     {
         "merged": "/Users/Daniele/Documents/OSU/Spring 2016/CSE 4471/info-security-project/C:\\Users\\Jewel\\StudioProjects\\info-security-project\\app\\build\\intermediates\\res\\merged\\debug\\layout\\activity_password_details.xml",

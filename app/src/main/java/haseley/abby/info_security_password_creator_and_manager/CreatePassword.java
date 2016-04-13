@@ -20,20 +20,17 @@ public class CreatePassword extends AppCompatActivity {
     int passwordLength;
     String sentence;
     String password;
+    EditText upperField;
+    EditText specialField;
+    EditText numsField;
+    EditText lengthField;
+    EditText sentenceField;
 
     ArrayList<PasswordEntry> passwords = new ArrayList<>();
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_create_password);
-
-        Button GenerateButton = (Button) findViewById(R.id.btnCreatePass);
-        GenerateButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                makePassword();
-            }
-        });
 
         Button AcceptButton = (Button) findViewById(R.id.btnAccept);
         AcceptButton.setOnClickListener(new View.OnClickListener() {
@@ -79,25 +76,6 @@ public class CreatePassword extends AppCompatActivity {
         });
     }
 
-    private  void makePassword(){
-        EditText upperField = (EditText) findViewById(R.id.txtNumUpperCase);
-        numUpperCase = Integer.parseInt(upperField.getText().toString());
-
-        EditText specialField = (EditText) findViewById(R.id.txtNumSpecialChars);
-        numSpecial = Integer.parseInt(specialField.getText().toString());
-
-        EditText numsField = (EditText) findViewById(R.id.txtNumNumbers);
-        numNumbers = Integer.parseInt(numsField.getText().toString());
-
-        EditText lengthField = (EditText) findViewById(R.id.txtPassLength);
-        passwordLength = Integer.parseInt(lengthField.getText().toString());
-
-        EditText sentenceField = (EditText) findViewById(R.id.txtSentence);
-        sentence = sentenceField.getText().toString();
-
-        TextView resultField = (TextView) findViewById(R.id.txtPassword);
-    }
-
     private void addEntry(PasswordEntry entry){
         getPasswordsFromFile();
 
@@ -138,8 +116,25 @@ public class CreatePassword extends AppCompatActivity {
     }
 
     public void generatePassword(){
+        upperField = (EditText) findViewById(R.id.txtNumUpperCase);
+        numUpperCase = Integer.parseInt(upperField.getText().toString());
+
+        specialField = (EditText) findViewById(R.id.txtNumSpecialChars);
+        numSpecial = Integer.parseInt(specialField.getText().toString());
+
+        numsField = (EditText) findViewById(R.id.txtNumNumbers);
+        numNumbers = Integer.parseInt(numsField.getText().toString());
+
+        lengthField = (EditText) findViewById(R.id.txtPassLength);
+        passwordLength = Integer.parseInt(lengthField.getText().toString());
+
+        sentenceField = (EditText) findViewById(R.id.txtSentence);
+        sentence = sentenceField.getText().toString();
+
+        Log.d("Password creation --->","calling create password");
+        password = GeneratePassword.createPassword(sentence, passwordLength, numUpperCase, numSpecial, numNumbers);
+        Log.d("Password creation --->", password);
         TextView resultField = (TextView) findViewById(R.id.txtPassword);
-        password = GeneratePassword.createPassword(passwordLength, numUpperCase, numSpecial, numNumbers);
         resultField.setText(password);
     }
 }
