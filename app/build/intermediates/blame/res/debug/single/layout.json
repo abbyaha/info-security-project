@@ -1,23 +1,23 @@
 [
     {
-        "merged": "/Users/Daniele/Documents/OSU/Spring 2016/CSE 4471/info-security-project/app/build/intermediates/res/merged/debug/layout/abc_dialog_title_material.xml",
-        "source": "/Users/Daniele/Documents/OSU/Spring 2016/CSE 4471/info-security-project/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/23.1.1/res/layout/abc_dialog_title_material.xml"
-    },
-    {
         "merged": "/Users/Daniele/Documents/OSU/Spring 2016/CSE 4471/info-security-project/C:\\Users\\Jewel\\StudioProjects\\info-security-project\\app\\build\\intermediates\\res\\merged\\debug\\layout\\design_layout_snackbar.xml",
         "source": "/Users/Daniele/Documents/OSU/Spring 2016/CSE 4471/info-security-project/C:\\Users\\Jewel\\StudioProjects\\info-security-project\\app\\build\\intermediates\\exploded-aar\\com.android.support\\design\\23.1.1\\res\\layout\\design_layout_snackbar.xml"
+    },
+    {
+        "merged": "/Users/Daniele/Documents/OSU/Spring 2016/CSE 4471/info-security-project/app/build/intermediates/res/merged/debug/layout/abc_dialog_title_material.xml",
+        "source": "/Users/Daniele/Documents/OSU/Spring 2016/CSE 4471/info-security-project/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/23.1.1/res/layout/abc_dialog_title_material.xml"
     },
     {
         "merged": "/Users/Daniele/Documents/OSU/Spring 2016/CSE 4471/info-security-project/C:\\Users\\Jewel\\StudioProjects\\info-security-project\\app\\build\\intermediates\\res\\merged\\debug\\layout\\activity_password_details.xml",
         "source": "/Users/Daniele/Documents/OSU/Spring 2016/CSE 4471/info-security-project/C:\\Users\\Jewel\\StudioProjects\\info-security-project\\app\\src\\main\\res\\layout\\activity_password_details.xml"
     },
     {
-        "merged": "/Users/Daniele/Documents/OSU/Spring 2016/CSE 4471/info-security-project/app/build/intermediates/res/merged/debug/layout/abc_list_menu_item_layout.xml",
-        "source": "/Users/Daniele/Documents/OSU/Spring 2016/CSE 4471/info-security-project/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/23.1.1/res/layout/abc_list_menu_item_layout.xml"
-    },
-    {
         "merged": "/Users/Daniele/Documents/OSU/Spring 2016/CSE 4471/info-security-project/C:\\Users\\Jewel\\StudioProjects\\info-security-project\\app\\build\\intermediates\\res\\merged\\debug\\layout\\abc_alert_dialog_material.xml",
         "source": "/Users/Daniele/Documents/OSU/Spring 2016/CSE 4471/info-security-project/C:\\Users\\Jewel\\StudioProjects\\info-security-project\\app\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\23.1.1\\res\\layout\\abc_alert_dialog_material.xml"
+    },
+    {
+        "merged": "/Users/Daniele/Documents/OSU/Spring 2016/CSE 4471/info-security-project/app/build/intermediates/res/merged/debug/layout/abc_list_menu_item_layout.xml",
+        "source": "/Users/Daniele/Documents/OSU/Spring 2016/CSE 4471/info-security-project/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/23.1.1/res/layout/abc_list_menu_item_layout.xml"
     },
     {
         "merged": "/Users/Daniele/Documents/OSU/Spring 2016/CSE 4471/info-security-project/app/build/intermediates/res/merged/debug/layout/notification_template_lines.xml",
@@ -70,6 +70,10 @@
     {
         "merged": "/Users/Daniele/Documents/OSU/Spring 2016/CSE 4471/info-security-project/C:\\Users\\Jewel\\StudioProjects\\info-security-project\\app\\build\\intermediates\\res\\merged\\debug\\layout\\notification_template_part_time.xml",
         "source": "/Users/Daniele/Documents/OSU/Spring 2016/CSE 4471/info-security-project/C:\\Users\\Jewel\\StudioProjects\\info-security-project\\app\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\23.1.1\\res\\layout\\notification_template_part_time.xml"
+    },
+    {
+        "merged": "/Users/Abby/Desktop/Info Security/info-security-project/app/build/intermediates/res/merged/debug/layout/fingerprint_dialog_container.xml",
+        "source": "/Users/Abby/Desktop/Info Security/info-security-project/app/src/main/res/layout/fingerprint_dialog_container.xml"
     },
     {
         "merged": "/Users/Abby/Desktop/Info Security/info-security-project/app/build/intermediates/res/merged/debug/layout/abc_list_menu_item_layout.xml",
@@ -198,6 +202,10 @@
     {
         "merged": "/Users/Daniele/Documents/OSU/Spring 2016/CSE 4471/info-security-project/app/build/intermediates/res/merged/debug/layout/abc_activity_chooser_view.xml",
         "source": "/Users/Daniele/Documents/OSU/Spring 2016/CSE 4471/info-security-project/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/23.1.1/res/layout/abc_activity_chooser_view.xml"
+    },
+    {
+        "merged": "/Users/Abby/Desktop/Info Security/info-security-project/app/build/intermediates/res/merged/debug/layout/fingerprint_dialog_content.xml",
+        "source": "/Users/Abby/Desktop/Info Security/info-security-project/app/src/main/res/layout/fingerprint_dialog_content.xml"
     },
     {
         "merged": "/Users/Abby/Desktop/Info Security/info-security-project/app/build/intermediates/res/merged/debug/layout/abc_screen_toolbar.xml",
@@ -638,6 +646,10 @@
     {
         "merged": "/Users/Daniele/Documents/OSU/Spring 2016/CSE 4471/info-security-project/C:\\Users\\Jewel\\StudioProjects\\info-security-project\\app\\build\\intermediates\\res\\merged\\debug\\layout\\abc_action_mode_bar.xml",
         "source": "/Users/Daniele/Documents/OSU/Spring 2016/CSE 4471/info-security-project/C:\\Users\\Jewel\\StudioProjects\\info-security-project\\app\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\23.1.1\\res\\layout\\abc_action_mode_bar.xml"
+    },
+    {
+        "merged": "/Users/Abby/Desktop/Info Security/info-security-project/app/build/intermediates/res/merged/debug/layout/fingerprint_dialog_backup.xml",
+        "source": "/Users/Abby/Desktop/Info Security/info-security-project/app/src/main/res/layout/fingerprint_dialog_backup.xml"
     },
     {
         "merged": "/Users/Daniele/Documents/OSU/Spring 2016/CSE 4471/info-security-project/C:\\Users\\Jewel\\StudioProjects\\info-security-project\\app\\build\\intermediates\\res\\merged\\debug\\layout\\notification_media_action.xml",
