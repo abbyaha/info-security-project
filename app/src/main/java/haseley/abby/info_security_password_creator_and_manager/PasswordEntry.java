@@ -11,11 +11,13 @@ public final class PasswordEntry implements Serializable {
     private String account;
     private String sentence;
     private String password;
+    private String creationDate;
 
-    public PasswordEntry(String accountString, String sentenceString, String passwordString) {
+    public PasswordEntry(String accountString, String sentenceString, String passwordString, String creationDate) {
         account = accountString;
         sentence = sentenceString;
         password = passwordString;
+        this.creationDate = creationDate;
     }
 
     public void setAccount(String newAccountName) {
@@ -30,6 +32,8 @@ public final class PasswordEntry implements Serializable {
         password = newPassword;
     }
 
+    public  void setCreationDate(String newDate) {creationDate = newDate;}
+
     public String getAccount() {
         return account;
     }
@@ -41,6 +45,8 @@ public final class PasswordEntry implements Serializable {
     public String getPassword() {
         return password;
     }
+
+    public String getCreationDate(){return creationDate;}
     @Override
     public String toString() {
         return "Account : " + this.account;

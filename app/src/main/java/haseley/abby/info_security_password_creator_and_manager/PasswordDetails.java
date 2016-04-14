@@ -14,24 +14,26 @@ public class PasswordDetails extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_password_details);
 
-        //TODO: Get the password object and its details from the bundle
         Bundle bundle = getIntent().getExtras();
 
+        //Unpack the 4 values from the bundle and display them
+
         TextView accountText = (TextView)findViewById(R.id.txtAccount);
-        //accountText.setText("New Account");
         accountText.setText(bundle.getString("Account"));
 
         TextView sentenceText = (TextView)findViewById(R.id.txtSentence);
-        //sentenceText.setText("Put a sentence here.");
         sentenceText.setText(bundle.getString("Sentence"));
 
         TextView passwordText = (TextView)findViewById(R.id.txtPass);
-        //sentenceText.setText("P@$$W0RD");
         passwordText.setText(bundle.getString("Password"));
+
+        TextView ageText = (TextView)findViewById(R.id.txtAge);
+        ageText.setText(bundle.getString("Age"));
     }
 
     @Override
     public void onBackPressed() {
+        //Allow the user to navigate back to the password viewer from within the app
         Intent intent = new Intent(this, PasswordViewer.class);
         startActivity(intent);
         finish();
@@ -39,6 +41,7 @@ public class PasswordDetails extends AppCompatActivity {
 
     @Override
     public void onPause(){
+        //End this activity if the user leaves the app or view
         super.onPause();
         finish();
     }

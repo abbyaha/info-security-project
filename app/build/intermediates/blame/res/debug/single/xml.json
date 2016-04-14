@@ -1,6 +1,10 @@
 [
     {
-        "merged": "/Users/Abby/Desktop/Info Security/info-security-project/app/build/intermediates/res/merged/debug/xml/preferences.xml",
-        "source": "/Users/Abby/Desktop/Info Security/info-security-project/app/src/main/res/xml/preferences.xml"
+        "merged": "C:\\Users\\Jewel\\StudioProjects\\info-security-project\\app\\build\\intermediates\\res\\merged\\debug\\xml\\preferences.xml",
+        "source": "C:\\Users\\Jewel\\StudioProjects\\info-security-project\\app\\src\\main\\res\\xml\\preferences.xml"
+    },
+    {
+        "merged": "C:\\Users\\Abby\\Desktop\\Info Security\\info-security-project\\app\\build\\intermediates\\res\\merged\\debug\\xml\\preferences.xml",
+        "source": "C:\\Users\\Abby\\Desktop\\Info Security\\info-security-project\\app\\src\\main\\res\\xml\\preferences.xml"
     }
 ]

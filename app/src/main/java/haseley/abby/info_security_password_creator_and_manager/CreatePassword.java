@@ -11,27 +11,31 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import java.util.ArrayList;
+import java.util.Calendar;
 
 public class CreatePassword extends AppCompatActivity {
-
+    //Variables selected by user
     int numUpperCase;
     int numSpecial;
     int numNumbers;
     int passwordLength;
+    //Generated on user request, saved with entry
     String sentence;
     String password;
+    //Pointers to the regions on the screen
     EditText upperField;
     EditText specialField;
     EditText numsField;
     EditText lengthField;
     EditText sentenceField;
-
+    //Needed in order to add new password
     ArrayList<PasswordEntry> passwords = new ArrayList<>();
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_create_password);
 
+        //Button for saving the current password and sentence with the account name
         Button AcceptButton = (Button) findViewById(R.id.btnAccept);
         AcceptButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -45,6 +49,17 @@ public class CreatePassword extends AppCompatActivity {
                 //Get the password to save
                 TextView resultField = (TextView) findViewById(R.id.txtPassword);
                 password = resultField.getText().toString();
+
+                //Grab the current date info
+                Calendar now = Calendar.getInstance();
+                //Save date as string in the format Year.Month.Day.Hour.Minute.Second
+                String date = "" + now.get(Calendar.YEAR) + "."
+                        + now.get(Calendar.MONTH) + "."
+                        + now.get(Calendar.DAY_OF_MONTH) + "."
+                        + now.get(Calendar.HOUR_OF_DAY) + "."
+                        + now.get(Calendar.MINUTE) + "."
+                        + now.get(Calendar.SECOND);
+
                 //Package the info in an entry
                 PasswordEntry entry = new PasswordEntry(accountName, sentence, password);
                 //Add the entry to the database
@@ -55,6 +70,7 @@ public class CreatePassword extends AppCompatActivity {
             }
         });
 
+        //Button for generating a sentence and putting it in the sentence field
         final Button genSentence = (Button) findViewById(R.id.btnGenerateSentence);
         genSentence.setOnClickListener(new Button.OnClickListener() {
             public void onClick(View v) {
@@ -65,6 +81,7 @@ public class CreatePassword extends AppCompatActivity {
             }
         });
 
+        //Button for generating a password from the sentence and with the set parameters
         Button genPassword = (Button) findViewById(R.id.btnCreatePass);
         genPassword.setOnClickListener(new Button.OnClickListener() {
             public void onClick(View v) {
@@ -76,28 +93,33 @@ public class CreatePassword extends AppCompatActivity {
         });
     }
 
+    //Adds a given password object to the saved list of passwords
     private void addEntry(PasswordEntry entry){
         getPasswordsFromFile();
-
+        //Add to list
         passwords.add(entry);
 
         try {
-            PasswordFile.encryptStore(getApplicationContext(), "WhiteWizard", "MyDifficultPassw", passwords);
+            //Save list as encrypted file
+            PasswordFile.encryptStore(getApplicationContext(), "WhiteWizard2", "MyDifficultPassw", passwords);
         } catch(Exception e){
-            //TODO: Uh?
+            //Should not get here
         }
     }
 
+    //Gets the list of current passwords from file
     private void getPasswordsFromFile(){
         try {
-            passwords = PasswordFile.decryptStore(getApplicationContext(), "WhiteWizard", "MyDifficultPassw");
+            //Decrypt the password list
+            passwords = PasswordFile.decryptStore(getApplicationContext(), "WhiteWizard2", "MyDifficultPassw");
         } catch(Exception e){
-            //TODO: Uh?
+            //Should not get here
         }
     }
 
     @Override
     public void onBackPressed() {
+        //Allow user to navigate back to the view screen when Back is used within the app
         Intent intent = new Intent(this, PasswordViewer.class);
         startActivity(intent);
         finish();
@@ -105,6 +127,7 @@ public class CreatePassword extends AppCompatActivity {
 
     @Override
     public void onPause(){
+        //End this activity if the user leaves the app or this view
         super.onPause();
         finish();
     }
