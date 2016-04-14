@@ -1,14 +1,18 @@
 [
     {
-        "merged": "/Users/Abby/Desktop/Info Security/info-security-project/app/build/intermediates/res/merged/debug/mipmap-hdpi-v4/ic_launcher.png",
-        "source": "/Users/Abby/Desktop/Info Security/info-security-project/app/src/main/res/mipmap-hdpi/ic_launcher.png"
+        "merged": "C:\\Users\\Jewel\\StudioProjects\\info-security-project\\app\\build\\intermediates\\res\\merged\\debug\\mipmap-hdpi-v4\\ic_launcher.png",
+        "source": "C:\\Users\\Jewel\\StudioProjects\\info-security-project\\app\\src\\main\\res\\mipmap-hdpi\\ic_launcher.png"
     },
     {
-        "merged": "/Users/Daniele/Documents/OSU/Spring 2016/CSE 4471/info-security-project/app/build/intermediates/res/merged/debug/mipmap-hdpi-v4/ic_launcher.png",
-        "source": "/Users/Daniele/Documents/OSU/Spring 2016/CSE 4471/info-security-project/app/src/main/res/mipmap-hdpi/ic_launcher.png"
+        "merged": "C:\\Users\\Daniele\\Documents\\OSU\\Spring 2016\\CSE 4471\\info-security-project\\C:\\Users\\Jewel\\StudioProjects\\info-security-project\\app\\build\\intermediates\\res\\merged\\debug\\mipmap-hdpi-v4\\ic_launcher.png",
+        "source": "C:\\Users\\Daniele\\Documents\\OSU\\Spring 2016\\CSE 4471\\info-security-project\\C:\\Users\\Jewel\\StudioProjects\\info-security-project\\app\\src\\main\\res\\mipmap-hdpi\\ic_launcher.png"
     },
     {
-        "merged": "/Users/Daniele/Documents/OSU/Spring 2016/CSE 4471/info-security-project/C:\\Users\\Jewel\\StudioProjects\\info-security-project\\app\\build\\intermediates\\res\\merged\\debug\\mipmap-hdpi-v4\\ic_launcher.png",
-        "source": "/Users/Daniele/Documents/OSU/Spring 2016/CSE 4471/info-security-project/C:\\Users\\Jewel\\StudioProjects\\info-security-project\\app\\src\\main\\res\\mipmap-hdpi\\ic_launcher.png"
+        "merged": "C:\\Users\\Abby\\Desktop\\Info Security\\info-security-project\\app\\build\\intermediates\\res\\merged\\debug\\mipmap-hdpi-v4\\ic_launcher.png",
+        "source": "C:\\Users\\Abby\\Desktop\\Info Security\\info-security-project\\app\\src\\main\\res\\mipmap-hdpi\\ic_launcher.png"
+    },
+    {
+        "merged": "C:\\Users\\Daniele\\Documents\\OSU\\Spring 2016\\CSE 4471\\info-security-project\\app\\build\\intermediates\\res\\merged\\debug\\mipmap-hdpi-v4\\ic_launcher.png",
+        "source": "C:\\Users\\Daniele\\Documents\\OSU\\Spring 2016\\CSE 4471\\info-security-project\\app\\src\\main\\res\\mipmap-hdpi\\ic_launcher.png"
     }
 ]

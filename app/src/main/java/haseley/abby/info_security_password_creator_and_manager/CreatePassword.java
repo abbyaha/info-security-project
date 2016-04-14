@@ -48,9 +48,15 @@ public class CreatePassword extends AppCompatActivity {
 
                 //Grab the current date info
                 Calendar now = Calendar.getInstance();
+                String date = "" + now.get(Calendar.YEAR) + "."
+                        + now.get(Calendar.MONTH) + "."
+                        + now.get(Calendar.DAY_OF_MONTH) + "."
+                        + now.get(Calendar.HOUR_OF_DAY) + "."
+                        + now.get(Calendar.MINUTE) + "."
+                        + now.get(Calendar.SECOND);
 
                 //Package the info in an entry
-                PasswordEntry entry = new PasswordEntry(accountName, sentence, password, now);
+                PasswordEntry entry = new PasswordEntry(accountName, sentence, password, date);
                 //Add the entry to the database
                 addEntry(entry);
 
@@ -86,7 +92,7 @@ public class CreatePassword extends AppCompatActivity {
         passwords.add(entry);
 
         try {
-            PasswordFile.encryptStore(getApplicationContext(), "WhiteWizard", "MyDifficultPassw", passwords);
+            PasswordFile.encryptStore(getApplicationContext(), "WhiteWizard2", "MyDifficultPassw", passwords);
         } catch(Exception e){
             //TODO: Uh?
         }
@@ -94,7 +100,7 @@ public class CreatePassword extends AppCompatActivity {
 
     private void getPasswordsFromFile(){
         try {
-            passwords = PasswordFile.decryptStore(getApplicationContext(), "WhiteWizard", "MyDifficultPassw");
+            passwords = PasswordFile.decryptStore(getApplicationContext(), "WhiteWizard2", "MyDifficultPassw");
         } catch(Exception e){
             //TODO: Uh?
         }

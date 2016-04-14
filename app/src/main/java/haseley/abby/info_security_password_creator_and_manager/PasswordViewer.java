@@ -42,7 +42,7 @@ public class PasswordViewer extends ListActivity {
                 b.putString("Sentence", password.getSentence());
                 b.putString("Password", password.getPassword());
 
-                Calendar creation = password.getCreationDate();
+                String creation = password.getCreationDate();
                 Calendar now = Calendar.getInstance();
 
                 String passAge = findBestTimeString(creation, now);
@@ -61,15 +61,27 @@ public class PasswordViewer extends ListActivity {
         });
     }
 
-    private String findBestTimeString(Calendar old, Calendar current){
+    private int[] extractDatePieces(String dateString){
+        int[] values = new int[6];
+        String[] parse = dateString.split(".");
+
+        for(int i = 0; i < 6; i++){
+            values[0] = Integer.parseInt(parse[0]);
+        }
+        return values;
+    }
+
+    private String findBestTimeString(String old, Calendar current){
         String result;
 
-        int yearsPassed = current.get(Calendar.YEAR) - old.get(Calendar.YEAR);
-        int monthsPassed = current.get(Calendar.MONTH) - old.get(Calendar.MONTH);
-        int daysPassed = current.get(Calendar.DAY_OF_MONTH) - old.get(Calendar.DAY_OF_MONTH);
-        int hoursPassed = current.get(Calendar.HOUR_OF_DAY) - old.get(Calendar.HOUR_OF_DAY);
-        int minutesPassed = current.get(Calendar.MINUTE) - old.get(Calendar.MINUTE);
-        int secondsPassed = current.get(Calendar.SECOND) - old.get(Calendar.SECOND);
+        int[] dateValues = extractDatePieces(old);
+
+        int yearsPassed = current.get(Calendar.YEAR) - dateValues[0];
+        int monthsPassed = current.get(Calendar.MONTH) - dateValues[1];
+        int daysPassed = current.get(Calendar.DAY_OF_MONTH) - dateValues[2];
+        int hoursPassed = current.get(Calendar.HOUR_OF_DAY) - dateValues[3];
+        int minutesPassed = current.get(Calendar.MINUTE) - dateValues[4];
+        int secondsPassed = current.get(Calendar.SECOND) - dateValues[5];
 
         if(yearsPassed > 0){
             result = "Age: " + yearsPassed + " YEARS old";
@@ -124,7 +136,7 @@ public class PasswordViewer extends ListActivity {
 
     private void getPasswordsFromFile(){
         try {
-            passwords = PasswordFile.decryptStore(getApplicationContext(), "WhiteWizard", "MyDifficultPassw");
+            passwords = PasswordFile.decryptStore(getApplicationContext(), "WhiteWizard2", "MyDifficultPassw");
         } catch(Exception e){
             //TODO: Uh?
         }
