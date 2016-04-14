@@ -71,35 +71,95 @@ public class PasswordViewer extends ListActivity {
         return values;
     }
 
+    private int[] getElapsedTime(int[] oldDate, Calendar current){
+        int[] actualElapsed = new int[6];
+
+        //Get the current change in each value
+        int yearsPassed = current.get(Calendar.YEAR) - oldDate[0];
+        int monthsPassed = current.get(Calendar.MONTH) - oldDate[1];
+        int daysPassed = current.get(Calendar.DAY_OF_MONTH) - oldDate[2];
+        int hoursPassed = current.get(Calendar.HOUR_OF_DAY) - oldDate[3];
+        int minutesPassed = current.get(Calendar.MINUTE) - oldDate[4];
+        int secondsPassed = current.get(Calendar.SECOND) - oldDate[5];
+
+        //Correct for negative values in each field
+        //By "borrowing" from the next largest
+        if(secondsPassed < 0){
+            secondsPassed += 60;
+            minutesPassed--;
+        }
+        if(minutesPassed < 0){
+            minutesPassed += 60;
+            hoursPassed--;
+        }
+        if(hoursPassed < 0){
+            hoursPassed += 24;
+            daysPassed--;
+        }
+        if(daysPassed < 0){
+            monthsPassed--;
+            //Find out how many days were in the first month
+            if(oldDate[1] == Calendar.JANUARY
+                    || oldDate[1] == Calendar.MARCH
+                    || oldDate[1] == Calendar.MAY
+                    || oldDate[1] == Calendar.JULY
+                    || oldDate[1] == Calendar.AUGUST
+                    || oldDate[1] == Calendar.OCTOBER
+                    || oldDate[1] == Calendar.DECEMBER)
+            {
+                //31 days
+                daysPassed += 31;
+            }
+            else if(oldDate[1] == Calendar.APRIL
+                    || oldDate[1] == Calendar.JUNE
+                    || oldDate[1] == Calendar.SEPTEMBER
+                    || oldDate[1] == Calendar.NOVEMBER){
+                //30 days
+                daysPassed += 30;
+            }
+            else{ //February
+                daysPassed +=28;
+            }
+        }
+        if(monthsPassed < 0){
+            monthsPassed += 12;
+            yearsPassed--;
+        }
+        //Note: Years should never be negative
+
+        actualElapsed[0] = yearsPassed;
+        actualElapsed[1] = monthsPassed;
+        actualElapsed[2] = daysPassed;
+        actualElapsed[3] = hoursPassed;
+        actualElapsed[4] = minutesPassed;
+        actualElapsed[5] = secondsPassed;
+
+        return  actualElapsed;
+    }
+
     private String findBestTimeString(String old, Calendar current){
         String result;
         Log.d("---->PasswordCreate", "Making age string");
         int[] dateValues = extractDatePieces(old);
+        int[] elapsed = getElapsedTime(dateValues, current);
 
-        int yearsPassed = current.get(Calendar.YEAR) - dateValues[0];
-        int monthsPassed = current.get(Calendar.MONTH) - dateValues[1];
-        int daysPassed = current.get(Calendar.DAY_OF_MONTH) - dateValues[2];
-        int hoursPassed = current.get(Calendar.HOUR_OF_DAY) - dateValues[3];
-        int minutesPassed = current.get(Calendar.MINUTE) - dateValues[4];
-        int secondsPassed = current.get(Calendar.SECOND) - dateValues[5];
-
-        if(yearsPassed > 0){
-            result = "Age: " + yearsPassed + " YEARS old";
+        if(elapsed[0] > 0){
+            result = "Age: " + elapsed[0] + " YEARS old";
         }
-        else if(monthsPassed > 0){
-            result = "Age: " + monthsPassed + " months old";
+        else if(elapsed[1] > 0){
+            result = "Age: " + elapsed[1] + " months old";
         }
-        else if(daysPassed > 0){
-            result = "Age: " + daysPassed + " days old";
+        else if(elapsed[2] > 0){
+            result = "Age: " + elapsed[2] + " days old";
         }
-        else if(hoursPassed > 0){
-            result = "Age: " + hoursPassed + " hours old";
+        else if(elapsed[3] > 0){
+            result = "Age: " + elapsed[3] + " hours old";
         }
-        else if(minutesPassed > 0){
-            result = "Age: " + minutesPassed + " minutes old";
+        else if(elapsed[4] > 0){
+            result = "Age: " + elapsed[4] + " minutes old";
         }
         else {
-            result = "Age: " + secondsPassed + " seconds old";
+            result = "Age: " + elapsed[5] + " seconds old";
         }
         Log.d("---->PasswordCreate", "Selected string: " + result);
         return result;
