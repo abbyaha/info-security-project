@@ -9,8 +9,8 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
-
 import java.util.ArrayList;
+import java.util.Calendar;
 
 public class CreatePassword extends AppCompatActivity {
 
@@ -45,8 +45,12 @@ public class CreatePassword extends AppCompatActivity {
                 //Get the password to save
                 TextView resultField = (TextView) findViewById(R.id.txtPassword);
                 password = resultField.getText().toString();
+
+                //Grab the current date info
+                Calendar now = Calendar.getInstance();
+
                 //Package the info in an entry
-                PasswordEntry entry = new PasswordEntry(accountName, sentence, password);
+                PasswordEntry entry = new PasswordEntry(accountName, sentence, password, now);
                 //Add the entry to the database
                 addEntry(entry);
 

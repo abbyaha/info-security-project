@@ -12,6 +12,7 @@ import android.widget.ListView;
 import android.widget.TextView;
 
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.List;
 
 public class PasswordViewer extends ListActivity {
@@ -40,6 +41,13 @@ public class PasswordViewer extends ListActivity {
                 b.putString("Account", password.getAccount());
                 b.putString("Sentence", password.getSentence());
                 b.putString("Password", password.getPassword());
+
+                Calendar creation = password.getCreationDate();
+                Calendar now = Calendar.getInstance();
+
+                String passAge = findBestTimeString(creation, now);
+                b.putString("Age", passAge);
+
                 goToPasswordDetails(b);
             }
         });
@@ -51,6 +59,37 @@ public class PasswordViewer extends ListActivity {
                 goToPasswordCreator();
             }
         });
+    }
+
+    private String findBestTimeString(Calendar old, Calendar current){
+        String result;
+
+        int yearsPassed = current.get(Calendar.YEAR) - old.get(Calendar.YEAR);
+        int monthsPassed = current.get(Calendar.MONTH) - old.get(Calendar.MONTH);
+        int daysPassed = current.get(Calendar.DAY_OF_MONTH) - old.get(Calendar.DAY_OF_MONTH);
+        int hoursPassed = current.get(Calendar.HOUR_OF_DAY) - old.get(Calendar.HOUR_OF_DAY);
+        int minutesPassed = current.get(Calendar.MINUTE) - old.get(Calendar.MINUTE);
+        int secondsPassed = current.get(Calendar.SECOND) - old.get(Calendar.SECOND);
+
+        if(yearsPassed > 0){
+            result = "Age: " + yearsPassed + " YEARS old";
+        }
+        else if(monthsPassed > 0){
+            result = "Age: " + monthsPassed + " YEARS old";
+        }
+        else if(daysPassed > 0){
+            result = "Age: " + daysPassed + " YEARS old";
+        }
+        else if(hoursPassed > 0){
+            result = "Age: " + hoursPassed + " YEARS old";
+        }
+        else if(minutesPassed > 0){
+            result = "Age: " + minutesPassed + " YEARS old";
+        }
+        else {
+            result = "Age: " + secondsPassed + " YEARS old";
+        }
+        return result;
     }
 
     private void fillList(){

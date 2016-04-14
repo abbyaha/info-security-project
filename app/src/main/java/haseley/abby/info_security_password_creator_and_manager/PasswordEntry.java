@@ -1,6 +1,7 @@
 package haseley.abby.info_security_password_creator_and_manager;
 
 import java.io.Serializable;
+import java.util.Calendar;
 
 /**
  * Created by Daniele on 3/14/16.
@@ -11,11 +12,13 @@ public final class PasswordEntry implements Serializable {
     private String account;
     private String sentence;
     private String password;
+    private Calendar creationDate;
 
-    public PasswordEntry(String accountString, String sentenceString, String passwordString) {
+    public PasswordEntry(String accountString, String sentenceString, String passwordString, Calendar creationDate) {
         account = accountString;
         sentence = sentenceString;
         password = passwordString;
+        this.creationDate = creationDate;
     }
 
     public void setAccount(String newAccountName) {
@@ -30,6 +33,8 @@ public final class PasswordEntry implements Serializable {
         password = newPassword;
     }
 
+    public  void setCreationDate(Calendar newDate) {creationDate = newDate;}
+
     public String getAccount() {
         return account;
     }
@@ -41,6 +46,8 @@ public final class PasswordEntry implements Serializable {
     public String getPassword() {
         return password;
     }
+
+    public Calendar getCreationDate(){return creationDate;}
     @Override
     public String toString() {
         return "Account : " + this.account;
