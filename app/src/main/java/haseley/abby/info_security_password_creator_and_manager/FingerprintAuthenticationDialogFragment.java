@@ -169,7 +169,7 @@ public class FingerprintAuthenticationDialogFragment extends DialogFragment
 
             if (mUseFingerprintFutureCheckBox.isChecked()) {
                 // Re-create the key so that fingerprints including new ones are validated.
-                mActivity.makeKey();
+                mActivity.makeFingerKey();
                 mStage = Stage.FINGERPRINT;
             }
         }
