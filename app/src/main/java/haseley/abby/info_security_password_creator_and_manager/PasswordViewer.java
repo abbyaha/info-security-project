@@ -41,7 +41,7 @@ public class PasswordViewer extends ListActivity {
                 b.putString("Account", password.getAccount());
                 b.putString("Sentence", password.getSentence());
                 b.putString("Password", password.getPassword());
-
+                Log.d("---->PasswordView", "Gathered everything but date");
                 String creation = password.getCreationDate();
                 Calendar now = Calendar.getInstance();
 
@@ -63,17 +63,17 @@ public class PasswordViewer extends ListActivity {
 
     private int[] extractDatePieces(String dateString){
         int[] values = new int[6];
-        String[] parse = dateString.split(".");
-
+        String[] parse = dateString.split("\\.");
+        Log.d("---->PasswordCreate", "Parsing String");
         for(int i = 0; i < 6; i++){
-            values[0] = Integer.parseInt(parse[0]);
+            values[i] = Integer.parseInt(parse[i]);
         }
         return values;
     }
 
     private String findBestTimeString(String old, Calendar current){
         String result;
-
+        Log.d("---->PasswordCreate", "Making age string");
         int[] dateValues = extractDatePieces(old);
 
         int yearsPassed = current.get(Calendar.YEAR) - dateValues[0];
@@ -87,20 +87,21 @@ public class PasswordViewer extends ListActivity {
             result = "Age: " + yearsPassed + " YEARS old";
         }
         else if(monthsPassed > 0){
-            result = "Age: " + monthsPassed + " YEARS old";
+            result = "Age: " + monthsPassed + " months old";
         }
         else if(daysPassed > 0){
-            result = "Age: " + daysPassed + " YEARS old";
+            result = "Age: " + daysPassed + " days old";
         }
         else if(hoursPassed > 0){
-            result = "Age: " + hoursPassed + " YEARS old";
+            result = "Age: " + hoursPassed + " hours old";
         }
         else if(minutesPassed > 0){
-            result = "Age: " + minutesPassed + " YEARS old";
+            result = "Age: " + minutesPassed + " minutes old";
         }
         else {
-            result = "Age: " + secondsPassed + " YEARS old";
+            result = "Age: " + secondsPassed + " seconds old";
         }
+        Log.d("---->PasswordCreate", "Selected string: " + result);
         return result;
     }
 

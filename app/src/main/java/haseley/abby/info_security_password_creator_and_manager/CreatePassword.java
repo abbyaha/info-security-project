@@ -46,6 +46,7 @@ public class CreatePassword extends AppCompatActivity {
                 TextView resultField = (TextView) findViewById(R.id.txtPassword);
                 password = resultField.getText().toString();
 
+                Log.d("---->PasswordCreate", "Gathered everything but date");
                 //Grab the current date info
                 Calendar now = Calendar.getInstance();
                 String date = "" + now.get(Calendar.YEAR) + "."
@@ -54,7 +55,7 @@ public class CreatePassword extends AppCompatActivity {
                         + now.get(Calendar.HOUR_OF_DAY) + "."
                         + now.get(Calendar.MINUTE) + "."
                         + now.get(Calendar.SECOND);
-
+                Log.d("---->PasswordCreate", "Created Date string");
                 //Package the info in an entry
                 PasswordEntry entry = new PasswordEntry(accountName, sentence, password, date);
                 //Add the entry to the database
