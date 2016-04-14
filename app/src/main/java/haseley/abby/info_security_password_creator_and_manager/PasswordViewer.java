@@ -16,7 +16,9 @@ import java.util.Calendar;
 import java.util.List;
 
 public class PasswordViewer extends ListActivity {
+    //List of passwords that will be displayed
     List<PasswordEntry> passwords = new ArrayList<>();
+    //List view to load passwords into
     ListView listView;
 
     @Override
@@ -31,20 +33,21 @@ public class PasswordViewer extends ListActivity {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position,
                                     long id) {
-                //Finding which item was clicked?
+                //Find the string displayed with the clicked item
                 String item = ((TextView) view).getText().toString();
 
-                //Find out which password this was based on the text...
+                //Find out which password this was based on the text
                 PasswordEntry password = findItemByString(item);
 
+                //Bundle the password info to send to the details view
                 Bundle b = new Bundle();
                 b.putString("Account", password.getAccount());
                 b.putString("Sentence", password.getSentence());
                 b.putString("Password", password.getPassword());
-                Log.d("---->PasswordView", "Gathered everything but date");
+                //Get creation date and current date
                 String creation = password.getCreationDate();
                 Calendar now = Calendar.getInstance();
-
+                //Calculate an appropriate string for the password's age
                 String passAge = findBestTimeString(creation, now);
                 b.putString("Age", passAge);
 
@@ -61,16 +64,19 @@ public class PasswordViewer extends ListActivity {
         });
     }
 
+    //Turns the date string into a 6-element array of numbers
     private int[] extractDatePieces(String dateString){
         int[] values = new int[6];
+        //Values are separated by .
         String[] parse = dateString.split("\\.");
-        Log.d("---->PasswordCreate", "Parsing String");
+
         for(int i = 0; i < 6; i++){
             values[i] = Integer.parseInt(parse[i]);
         }
         return values;
     }
 
+    //Calculate the difference in time between these dates
     private int[] getElapsedTime(int[] oldDate, Calendar current){
         int[] actualElapsed = new int[6];
 
@@ -137,12 +143,16 @@ public class PasswordViewer extends ListActivity {
         return  actualElapsed;
     }
 
+    //Get a user-friendly message about the age of the password
     private String findBestTimeString(String old, Calendar current){
         String result;
-        Log.d("---->PasswordCreate", "Making age string");
+
+        //Get the int array of date values
         int[] dateValues = extractDatePieces(old);
+        //Get the elapsed time between password creation and now
         int[] elapsed = getElapsedTime(dateValues, current);
 
+        //Tell the user about the largest unit with a difference
         if(elapsed[0] > 0){
             result = "Age: " + elapsed[0] + " YEARS old";
         }
@@ -161,23 +171,24 @@ public class PasswordViewer extends ListActivity {
         else {
             result = "Age: " + elapsed[5] + " seconds old";
         }
-        Log.d("---->PasswordCreate", "Selected string: " + result);
+
         return result;
     }
 
     private void fillList(){
         //Grab the list view
         listView = getListView();
-        //ListView listView1 = (ListView) findViewById(R.id.listView1);
 
         getPasswordsFromFile();
 
+        //Note: Using a custom adapter class just to change the font color...
         ArrayAdapter<PasswordEntry> adapter = new WWAdapter(listView.getContext(),
                 android.R.layout.simple_list_item_1, makeArray(passwords));
 
         listView.setAdapter(adapter);
     }
 
+    //Helper method because the adapter needs an array of PasswordEntry, not array list
     private PasswordEntry[] makeArray(List<PasswordEntry> list){
         PasswordEntry[] array = new PasswordEntry[list.size()];
 
@@ -197,17 +208,19 @@ public class PasswordViewer extends ListActivity {
 
     private void getPasswordsFromFile(){
         try {
+            //Decrypt password list
             passwords = PasswordFile.decryptStore(getApplicationContext(), "WhiteWizard2", "MyDifficultPassw");
         } catch(Exception e){
-            //TODO: Uh?
+            //Shouldn't get here
         }
     }
 
-    //Helper method
+    //Helper method to use displayed string to find the object
     private PasswordEntry findItemByString(String itemToString){
         PasswordEntry result = null;
 
         for(PasswordEntry p : passwords){
+            //Note: password's toString is what was displayed in the list
             if(p.toString().equalsIgnoreCase(itemToString)){
                 result = p;
                 break;
@@ -217,8 +230,8 @@ public class PasswordViewer extends ListActivity {
         return result;
     }
 
+    //Bundle should have the 4 values for the detail view
     private void goToPasswordDetails(Bundle b){
-        Log.d("Viewer", "About to make an intent for password details");
         Intent intent = new Intent(this, PasswordDetails.class);
         intent.putExtras(b);
         startActivity(intent);
@@ -230,6 +243,7 @@ public class PasswordViewer extends ListActivity {
     }
     @Override
     public void onPause(){
+        //End activity if the user leaves the app
         super.onPause();
         finish();
     }

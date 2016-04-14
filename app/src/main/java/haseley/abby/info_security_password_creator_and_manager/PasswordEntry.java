@@ -1,7 +1,6 @@
 package haseley.abby.info_security_password_creator_and_manager;
 
 import java.io.Serializable;
-import java.util.Calendar;
 
 /**
  * Created by Daniele on 3/14/16.
