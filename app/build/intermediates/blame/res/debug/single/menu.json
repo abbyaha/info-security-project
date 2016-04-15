@@ -1,18 +1,22 @@
 [
     {
-        "merged": "C:\\Users\\Abby\\Desktop\\Info Security\\info-security-project\\app\\build\\intermediates\\res\\merged\\debug\\menu\\menu_log_in.xml",
-        "source": "C:\\Users\\Abby\\Desktop\\Info Security\\info-security-project\\app\\src\\main\\res\\menu\\menu_log_in.xml"
+        "merged": "/Users/Abby/Desktop/Info Security/info-security-project/C:\\Users\\Daniele\\Documents\\OSU\\Spring 2016\\CSE 4471\\info-security-project\\C:\\Users\\Jewel\\StudioProjects\\info-security-project\\app\\build\\intermediates\\res\\merged\\debug\\menu\\menu_log_in.xml",
+        "source": "/Users/Abby/Desktop/Info Security/info-security-project/C:\\Users\\Daniele\\Documents\\OSU\\Spring 2016\\CSE 4471\\info-security-project\\C:\\Users\\Jewel\\StudioProjects\\info-security-project\\app\\src\\main\\res\\menu\\menu_log_in.xml"
     },
     {
-        "merged": "C:\\Users\\Daniele\\Documents\\OSU\\Spring 2016\\CSE 4471\\info-security-project\\app\\build\\intermediates\\res\\merged\\debug\\menu\\menu_log_in.xml",
-        "source": "C:\\Users\\Daniele\\Documents\\OSU\\Spring 2016\\CSE 4471\\info-security-project\\app\\src\\main\\res\\menu\\menu_log_in.xml"
+        "merged": "/Users/Abby/Desktop/Info Security/info-security-project/C:\\Users\\Daniele\\Documents\\OSU\\Spring 2016\\CSE 4471\\info-security-project\\app\\build\\intermediates\\res\\merged\\debug\\menu\\menu_log_in.xml",
+        "source": "/Users/Abby/Desktop/Info Security/info-security-project/C:\\Users\\Daniele\\Documents\\OSU\\Spring 2016\\CSE 4471\\info-security-project\\app\\src\\main\\res\\menu\\menu_log_in.xml"
     },
     {
-        "merged": "C:\\Users\\Jewel\\StudioProjects\\info-security-project\\app\\build\\intermediates\\res\\merged\\debug\\menu\\menu_log_in.xml",
-        "source": "C:\\Users\\Jewel\\StudioProjects\\info-security-project\\app\\src\\main\\res\\menu\\menu_log_in.xml"
+        "merged": "/Users/Abby/Desktop/Info Security/info-security-project/C:\\Users\\Jewel\\StudioProjects\\info-security-project\\app\\build\\intermediates\\res\\merged\\debug\\menu\\menu_log_in.xml",
+        "source": "/Users/Abby/Desktop/Info Security/info-security-project/C:\\Users\\Jewel\\StudioProjects\\info-security-project\\app\\src\\main\\res\\menu\\menu_log_in.xml"
     },
     {
-        "merged": "C:\\Users\\Daniele\\Documents\\OSU\\Spring 2016\\CSE 4471\\info-security-project\\C:\\Users\\Jewel\\StudioProjects\\info-security-project\\app\\build\\intermediates\\res\\merged\\debug\\menu\\menu_log_in.xml",
-        "source": "C:\\Users\\Daniele\\Documents\\OSU\\Spring 2016\\CSE 4471\\info-security-project\\C:\\Users\\Jewel\\StudioProjects\\info-security-project\\app\\src\\main\\res\\menu\\menu_log_in.xml"
+        "merged": "/Users/Abby/Desktop/Info Security/info-security-project/C:\\Users\\Abby\\Desktop\\Info Security\\info-security-project\\app\\build\\intermediates\\res\\merged\\debug\\menu\\menu_log_in.xml",
+        "source": "/Users/Abby/Desktop/Info Security/info-security-project/C:\\Users\\Abby\\Desktop\\Info Security\\info-security-project\\app\\src\\main\\res\\menu\\menu_log_in.xml"
+    },
+    {
+        "merged": "/Users/Abby/Desktop/Info Security/info-security-project/app/build/intermediates/res/merged/debug/menu/menu_log_in.xml",
+        "source": "/Users/Abby/Desktop/Info Security/info-security-project/app/src/main/res/menu/menu_log_in.xml"
     }
 ]

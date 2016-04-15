@@ -65,6 +65,8 @@ public class CreatePassword extends AppCompatActivity {
                 addEntry(entry);
 
                 Toast.makeText(getApplicationContext(), "Password Created", Toast.LENGTH_SHORT).show();
+                goToPasswordViewer();
+
             }
         });
 
@@ -84,7 +86,7 @@ public class CreatePassword extends AppCompatActivity {
         genPassword.setOnClickListener(new Button.OnClickListener() {
             public void onClick(View v) {
 
-                Log.d("Password creation --->","Generating password");
+                Log.d("Password creation --->", "Generating password");
                 generatePassword();
 
             }
@@ -153,9 +155,14 @@ public class CreatePassword extends AppCompatActivity {
         sentence = sentenceField.getText().toString();
 
         Log.d("Password creation --->","calling create password");
-        password = GeneratePassword.createPassword(sentence, passwordLength, numUpperCase, numSpecial, numNumbers);
+        password = GeneratePassword.createPassword(sentence, passwordLength, numUpperCase, numNumbers, numSpecial);
         Log.d("Password creation --->", password);
         TextView resultField = (TextView) findViewById(R.id.txtPassword);
         resultField.setText(password);
+    }
+
+    public void goToPasswordViewer(){
+        Intent intent = new Intent(this, PasswordViewer.class);
+        startActivity(intent);
     }
 }
