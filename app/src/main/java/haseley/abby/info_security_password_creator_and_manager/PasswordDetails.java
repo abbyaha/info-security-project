@@ -19,14 +19,16 @@ import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 import java.io.ObjectOutput;
 import java.io.ObjectOutputStream;
+import java.io.RandomAccessFile;
 import java.security.KeyStore;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Iterator;
 import java.util.List;
 
 public class PasswordDetails extends AppCompatActivity {
 
-    List<PasswordEntry> passwords = new ArrayList<>();
+    ArrayList<PasswordEntry> passwords = new ArrayList<>();
     private static final String CRYPT_KEY_NAME = "my_crypt_key";
 
     @Override
@@ -65,7 +67,7 @@ public class PasswordDetails extends AppCompatActivity {
             public void onClick(View v) {
 
                 Log.d("Password details --->", "Deleting");
-                deletePassword(bundle.getString("Password"));
+                deletePassword(bundle.getString("Account"), bundle.getString("Password"));
 
             }
         });
@@ -94,19 +96,26 @@ public class PasswordDetails extends AppCompatActivity {
 
     }
 
-    public void deletePassword(String password){
+    public void deletePassword(String account, String password){
         getPasswordsFromFile();
-        PasswordEntry result = null;
 
-        int p_index = getIndexByPassword(password);
-        passwords.remove(p_index);
-        /*
+        int deleteIndex = -1;
+        for (int i = 0; i < passwords.size(); i++) {
+            PasswordEntry current = passwords.get(i);
+            if ((current.getAccount().equals(account)) && (current.getPassword()).equals(password)) {
+                deleteIndex = i;
+            }
+        }
+        if (deleteIndex >= 0) {
+            passwords.remove(deleteIndex);
+        }
+
         try {
-            PasswordFile.encryptStore(getApplicationContext(), "WhiteWizard2", getKey(), (ArrayList<PasswordEntry>) passwords);
+            PasswordFile.encryptStore(getApplicationContext(), "WhiteWizard2", Arrays.copyOfRange(getKey(), 0, 16), passwords);
         } catch (IOException e) {
             e.printStackTrace();
         }
-        */
+
 
         Toast.makeText(getApplicationContext(), "Password deleted", Toast.LENGTH_LONG).show();
         goToPasswordViewer();
@@ -120,16 +129,6 @@ public class PasswordDetails extends AppCompatActivity {
             //Shouldn't get here
             Log.e("Reading Passwords", "Could not read passwords from file");
         }
-    }
-
-    public int getIndexByPassword(String pass)
-    {
-        for(PasswordEntry p : passwords)
-        {
-            if(p.getPassword().equals(pass))
-                return passwords.indexOf(p);
-        }
-        return -1;
     }
 
     public byte[] getKey(){
