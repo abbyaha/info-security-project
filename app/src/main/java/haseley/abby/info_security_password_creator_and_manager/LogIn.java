@@ -64,6 +64,7 @@ public class LogIn extends AppCompatActivity {
         setSupportActionBar(toolbar);
         Log.d("Login", "About to make buttons");
         LoginButton = (Button) findViewById(R.id.btnLogIn);
+        LoginButton.setVisibility(View.GONE);
         LoginButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -74,6 +75,15 @@ public class LogIn extends AppCompatActivity {
         });
         Log.d("Login", "Finished LogIn, making FingerPrint");
         FingerPrintButton = (Button) findViewById(R.id.btnFingerPrint);
+
+        if(isFirstRun()){
+            //present view to set the initial password
+            String password = "1234"; //TODO: make it so a view updates this field
+            makeCryptKey();
+            Log.d("firstrun", "Creating crypt key");
+            mSharedPreferences.edit().putString("stored_key", password).apply();
+            mSharedPreferences.edit().putBoolean("firstrun", false).apply();
+        }
 
         Log.d("Finger", "Checking fingerprint support");
         //check for lock support
@@ -99,14 +109,6 @@ public class LogIn extends AppCompatActivity {
         }
         Log.d("Finger", "No fingerprint errors");
 
-        if(isFirstRun()){
-            //present view to set the initial password
-            String password = "1234"; //TODO: make it so a view updates this field
-            makeCryptKey();
-            Log.d("firstrun", "Creating crypt key");
-            mSharedPreferences.edit().putString("stored_key", password).apply();
-            mSharedPreferences.edit().putBoolean("firstrun", false).apply();
-        }
 
         makeFingerKey();
         FingerPrintButton.setEnabled(true);
@@ -248,6 +250,9 @@ public class LogIn extends AppCompatActivity {
             Intent intent = new Intent(this, SettingsActivity.class);
             startActivity(intent);
             return true;
+        }else if (id == R.id.action_change_password){
+            getFragmentManager().beginTransaction().replace(android.R.id.content,
+                    new ChangePassword()).commit();
         }
 
         return super.onOptionsItemSelected(item);

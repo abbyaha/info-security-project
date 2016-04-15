@@ -1,6 +1,7 @@
 <resources>
     <string name="app_name">White Wizard</string>
     <string name="action_settings">Settings</string>
+    <string name="action_change_password">Change Password</string>
     <string name="title_activity_password_viewer">PasswordViewer</string>
 
     <string name="cancel">Cancel</string>
