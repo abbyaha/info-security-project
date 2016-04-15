@@ -89,7 +89,7 @@ public class LogIn extends AppCompatActivity {
 
         Log.d("Finger", "No fingerprint errors");
 
-        makeFingerKey();
+        
         FingerPrintButton.setEnabled(true);
         FingerPrintButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -139,6 +139,7 @@ public class LogIn extends AppCompatActivity {
             FingerPrintButton.setEnabled(true);
             return;
         }
+        makeFingerKey();
     }
 
     public boolean isFirstRun(){
@@ -205,7 +206,8 @@ public class LogIn extends AppCompatActivity {
             return false;
         } catch (KeyStoreException | CertificateException | UnrecoverableKeyException | IOException
                 | NoSuchAlgorithmException | InvalidKeyException e) {
-            throw new RuntimeException("Failed to init Cipher", e);
+            return false;
+            //throw new RuntimeException("Failed to init Cipher", e);
         }
     }
 
