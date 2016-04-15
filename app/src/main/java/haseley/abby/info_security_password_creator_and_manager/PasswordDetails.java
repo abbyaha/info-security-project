@@ -45,4 +45,12 @@ public class PasswordDetails extends AppCompatActivity {
         super.onPause();
         finish();
     }
+
+    public void copyPassword(){
+
+    }
+
+    public void deletePassword(){
+
+    }
 }

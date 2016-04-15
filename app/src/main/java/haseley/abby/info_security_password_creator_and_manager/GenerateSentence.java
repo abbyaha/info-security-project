@@ -67,7 +67,7 @@ public class GenerateSentence {
                 adverb = Words.adverb();
                 adj = Words.adjective();
 
-                sentence = conj + " " + art + " " + common_noun + " " + plur + " " + adverb + " " + adj;
+                sentence = conj + " the " + common_noun + " " + plur + " " + adverb + " " + adj;
                 break;
             case 4 :
                 //
