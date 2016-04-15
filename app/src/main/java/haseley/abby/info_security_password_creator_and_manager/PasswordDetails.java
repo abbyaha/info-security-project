@@ -100,23 +100,27 @@ public class PasswordDetails extends AppCompatActivity {
         getPasswordsFromFile();
 
         int deleteIndex = -1;
+        // Look for the desired password.
         for (int i = 0; i < passwords.size(); i++) {
             PasswordEntry current = passwords.get(i);
             if ((current.getAccount().equals(account)) && (current.getPassword()).equals(password)) {
                 deleteIndex = i;
             }
         }
+        // Remove it if it was found.
         if (deleteIndex >= 0) {
             passwords.remove(deleteIndex);
         }
 
         try {
+            // Update the file.
             PasswordFile.encryptStore(getApplicationContext(), "WhiteWizard2", Arrays.copyOfRange(getKey(), 0, 16), passwords);
         } catch (IOException e) {
             e.printStackTrace();
         }
 
 
+        // Notify the user.
         Toast.makeText(getApplicationContext(), "Password deleted", Toast.LENGTH_LONG).show();
         goToPasswordViewer();
     }
