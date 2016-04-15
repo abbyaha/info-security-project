@@ -34,7 +34,7 @@ public class GeneratePassword {
 
         //Make array of words
         String[] words = sentence.split(" ");
-        int total = sentence.length() - counter;
+        int total = sentence.length() - counter - nums;
 
         //Move through the sentence array start to finish and shorten each word, starting on the end
         //and moving to the start of each word to maintain some word integrity. It will then move to
