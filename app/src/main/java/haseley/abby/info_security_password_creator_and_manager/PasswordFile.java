@@ -19,6 +19,8 @@ public final class PasswordFile {
         // Do nothing.
     }
 
+    // This method takes an ArrayList of data and writes it to the file with the specified name
+    // after encrypting it with the specified key.
     private static void writeToFile(Context context, String fileName, byte[] key, ArrayList<PasswordEntry> data) throws IOException {
         ObjectOutputStream output = new ObjectOutputStream(new BufferedOutputStream(context.openFileOutput(fileName, Context.MODE_PRIVATE)));
 
@@ -34,7 +36,9 @@ public final class PasswordFile {
         output.close();
     }
 
+    // This is a simple wrapper method.
     public static void encryptStore(Context context, String file, byte[] key, ArrayList<PasswordEntry> data) throws IOException {
+        // Write the data to the file.
         writeToFile(context, file, key, data);
     }
 
@@ -56,7 +60,7 @@ public final class PasswordFile {
             while(true) {
                 // Read the next object from the file.
                 EncryptedEntry nextEntry = (EncryptedEntry) (input.readObject());
-                // Add the object to the ArrayList to be returned.
+                // Decrypt the object and add it to the ArrayList to be returned.
                 data.add(nextEntry.decrypt(key));
             }
         } catch (EOFException e) {
@@ -70,8 +74,7 @@ public final class PasswordFile {
         return data;
     }
 
-    // This method reads all the PasswordEntry objects from the file with the specified name,
-    // decrypts them using the specified key, and returns them in an ArrayList.
+    // This is a simple wrapper method.
     public static ArrayList<PasswordEntry> decryptStore(Context context, String file, byte[] key) throws IOException, ClassNotFoundException {
         // Read from the file and return the data.
         return readFromFile(context, file, key);

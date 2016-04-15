@@ -19,6 +19,10 @@ import javax.crypto.spec.SecretKeySpec;
 // Author: Daniele Bellutta
 // March 2016
 
+/* NOTE: THIS IS THE OLD VERSION OF THE CLASS USED TO ENCRYPT THE DATA. IT SIMPLY USES 128-BIT AES,
+   NOT THE CUSTOM ENCRYPTION ALGORITHM THAT IS ACTUALLY CURRENTLY BEING USED. THIS CLASS IS NOT
+   USED AT ALL; IT IS ONLY KEPT HERE JUST IN CASE IT IS NEEDED IN THE FUTURE.*/
+
 public final class PasswordFileOld {
 
     // ECB mode was chosen so that an IV is not necessary when encrypting or decrypting.
