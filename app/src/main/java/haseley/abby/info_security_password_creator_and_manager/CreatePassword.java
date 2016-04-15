@@ -22,6 +22,7 @@ import java.util.Calendar;
 
 public class CreatePassword extends AppCompatActivity {
     //Variables selected by user
+    String account;
     String numUpperCase;
     String numSpecial;
     String numNumbers;
@@ -30,6 +31,7 @@ public class CreatePassword extends AppCompatActivity {
     String sentence;
     String password;
     //Pointers to the regions on the screen
+    EditText accountField;
     EditText upperField;
     EditText specialField;
     EditText numsField;
@@ -47,7 +49,8 @@ public class CreatePassword extends AppCompatActivity {
         setContentView(R.layout.activity_create_password);
 
         //Button for saving the current password and sentence with the account name
-        Button AcceptButton = (Button) findViewById(R.id.btnAccept);
+        final Button AcceptButton = (Button) findViewById(R.id.btnAccept);
+        AcceptButton.setEnabled(false);
         AcceptButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -87,6 +90,7 @@ public class CreatePassword extends AppCompatActivity {
             public void onClick(View v) {
 
                 Log.d("Password creation --->", "Generating sentence");
+
                 generateSentence();
 
             }
@@ -96,6 +100,9 @@ public class CreatePassword extends AppCompatActivity {
         Button genPassword = (Button) findViewById(R.id.btnCreatePass);
         genPassword.setOnClickListener(new Button.OnClickListener() {
             public void onClick(View v) {
+
+                accountField = (EditText) findViewById(R.id.txtAccount);
+                account = accountField.getText().toString();
 
                 upperField = (EditText) findViewById(R.id.txtNumUpperCase);
                 numUpperCase = upperField.getText().toString();
@@ -117,6 +124,9 @@ public class CreatePassword extends AppCompatActivity {
                 if (valid) {
                     Log.d("Password creation --->", "Generating password");
                     generatePassword();
+                    AcceptButton.setEnabled(true);
+                }else{
+                    Toast.makeText(getApplicationContext(), "Entry not valid", Toast.LENGTH_SHORT).show();
                 }
             }
         });
@@ -201,6 +211,12 @@ public class CreatePassword extends AppCompatActivity {
         boolean sentence_empty = false;
         boolean length_empty = false;
         String message = "Please ";
+
+        if (account.matches("")) {
+            test &= false;
+
+            message = message + "enter an account name ";
+        }
 
         if (sentence.matches("")) {
             test &= false;
