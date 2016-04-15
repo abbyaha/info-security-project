@@ -22,7 +22,7 @@ public class GenerateSentence {
         String prep = "";
         String plur = "is";
 
-        int choose = rn.nextInt(5) + 1;
+        int choose = rn.nextInt(4) + 1;
         //choose = 1;
 
         switch (choose) {
