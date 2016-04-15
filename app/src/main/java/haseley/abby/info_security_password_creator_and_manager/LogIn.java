@@ -86,30 +86,8 @@ public class LogIn extends AppCompatActivity {
             mSharedPreferences.edit().putBoolean("firstrun", false).apply();
         }
 
-        Log.d("Finger", "Checking fingerprint support");
-        //check for lock support
-        if (!mKeyguardManager.isKeyguardSecure()) {
-            Log.d("Finger", "is not secure");
-            Toast.makeText(this,
-                    "Secure lock screen hasn't set up.\n"
-                            + "Go to 'Settings -> Security -> Fingerprint' to set up a fingerprint",
-                    Toast.LENGTH_LONG).show();
-            FingerPrintButton.setEnabled(true);
-            return;
-        }
 
-        //noinspection ResourceType
-        if (!mFingerprintManager.hasEnrolledFingerprints()) {
-            Log.d("Finger", "has no fingerprints");
-            // This happens when no fingerprints are registered.
-            Toast.makeText(this,
-                    "Go to 'Settings -> Security -> Fingerprint' and register at least one fingerprint",
-                    Toast.LENGTH_LONG).show();
-            FingerPrintButton.setEnabled(true);
-            return;
-        }
         Log.d("Finger", "No fingerprint errors");
-
 
         makeFingerKey();
         FingerPrintButton.setEnabled(true);
@@ -138,6 +116,29 @@ public class LogIn extends AppCompatActivity {
                 }
             }
         });
+
+        Log.d("Finger", "Checking fingerprint support");
+        //check for lock support
+        if (!mKeyguardManager.isKeyguardSecure()) {
+            Log.d("Finger", "is not secure");
+            Toast.makeText(this,
+                    "Secure lock screen hasn't set up.\n"
+                            + "Go to 'Settings -> Security -> Fingerprint' to set up a fingerprint",
+                    Toast.LENGTH_LONG).show();
+            FingerPrintButton.setEnabled(true);
+            return;
+        }
+
+        //noinspection ResourceType
+        if (!mFingerprintManager.hasEnrolledFingerprints()) {
+            Log.d("Finger", "has no fingerprints");
+            // This happens when no fingerprints are registered.
+            Toast.makeText(this,
+                    "Go to 'Settings -> Security -> Fingerprint' and register at least one fingerprint",
+                    Toast.LENGTH_LONG).show();
+            FingerPrintButton.setEnabled(true);
+            return;
+        }
     }
 
     public boolean isFirstRun(){

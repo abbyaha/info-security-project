@@ -41,7 +41,7 @@
         <Button
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Use Fingerprint"
+            android:text="Login"
             android:id="@+id/btnFingerPrint"
             android:layout_below="@+id/btnLogIn"
             android:layout_centerHorizontal="true"
@@ -50,7 +50,7 @@
         <Button
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Login"
+            android:text="Debug Login"
             android:id="@+id/btnLogIn"
             android:layout_centerVertical="true"
             android:layout_centerHorizontal="true"
