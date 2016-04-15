@@ -1,9 +1,10 @@
 package haseley.abby.info_security_password_creator_and_manager;
 
-import android.app.ListActivity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
+import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.Toolbar;
 import android.util.Base64;
 import android.util.Log;
 import android.view.Menu;
@@ -24,7 +25,7 @@ import java.util.Arrays;
 import java.util.Calendar;
 import java.util.List;
 
-public class PasswordViewer extends ListActivity {
+public class PasswordViewer extends AppCompatActivity{
     //List of passwords that will be displayed
     List<PasswordEntry> passwords = new ArrayList<>();
     //List view to load passwords into
@@ -37,6 +38,8 @@ public class PasswordViewer extends ListActivity {
         setContentView(R.layout.activity_password_viewer);
 
         fillList();
+        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+        setSupportActionBar(toolbar);
 
         //Set the listener for clicking an item
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
@@ -216,7 +219,8 @@ public class PasswordViewer extends ListActivity {
 
     private void fillList(){
         //Grab the list view
-        listView = getListView();
+        listView = (ListView) findViewById(R.id.ourlistview);
+        //listView = getListView();
 
         getPasswordsFromFile();
 
@@ -292,6 +296,7 @@ public class PasswordViewer extends ListActivity {
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
         getMenuInflater().inflate(R.menu.menu_log_in, menu);
+        Log.d("Menu", "Trying to create menu button");
         return true;
     }
 
@@ -308,8 +313,9 @@ public class PasswordViewer extends ListActivity {
             startActivity(intent);
             return true;
         }else if (id == R.id.action_change_password){
-            getFragmentManager().beginTransaction().replace(android.R.id.content,
-                    new ChangePassword()).commit();
+            Intent intent = new Intent(this, ChangePassword.class);
+            startActivity(intent);
+
         }
 
         return super.onOptionsItemSelected(item);
