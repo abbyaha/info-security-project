@@ -61,7 +61,7 @@ public class CreatePassword extends AppCompatActivity {
                         + now.get(Calendar.SECOND);
 
                 //Package the info in an entry
-                PasswordEntry entry = new PasswordEntry(accountName, sentence, password);
+                PasswordEntry entry = new PasswordEntry(accountName, sentence, password, date);
                 //Add the entry to the database
                 addEntry(entry);
 

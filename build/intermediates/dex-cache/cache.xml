@@ -1,3 +1,82 @@
 <?xml version="1.0" encoding="utf-8"?>
-<items version="2" />
+<items version="2" >
 
+    <item
+        jar="/Users/Abby/.gradle/caches/modules-2/files-2.1/com.squareup/javawriter/2.5.0/81241ff7078ef14f42ea2a8995fa09c096256e6b/javawriter-2.5.0.jar"
+        jumboMode="false"
+        revision="23.0.2"
+        sha1="81241ff7078ef14f42ea2a8995fa09c096256e6b">
+        <dex dex="/Users/Abby/Desktop/Info Security/info-security-project/app/build/intermediates/pre-dexed/debug/javawriter-2.5.0_060c33b1b08b511a2067f8562146b64e608ac5a8.jar" />
+    </item>
+    <item
+        jar="/Users/Abby/.gradle/caches/modules-2/files-2.1/javax.inject/javax.inject/1/6975da39a7040257bd51d21a231b76c915872d38/javax.inject-1.jar"
+        jumboMode="false"
+        revision="23.0.2"
+        sha1="6975da39a7040257bd51d21a231b76c915872d38">
+        <dex dex="/Users/Abby/Desktop/Info Security/info-security-project/app/build/intermediates/pre-dexed/debug/javax.inject-1_a245f6727580ef949a2c461b04d170a85c8b4e8a.jar" />
+    </item>
+    <item
+        jar="/Users/Abby/Desktop/Info Security/info-security-project/app/build/intermediates/exploded-aar/com.android.support/support-v4/23.1.1/jars/libs/internal_impl-23.1.1.jar"
+        jumboMode="false"
+        revision="23.0.2"
+        sha1="a4de9c81ae239414e1ed0f86441b02abaf29bca9">
+        <dex dex="/Users/Abby/Desktop/Info Security/info-security-project/app/build/intermediates/pre-dexed/debug/internal_impl-23.1.1_32ba2859ccbb15e6d0f5e8b6804f4b6fca6f9c26.jar" />
+    </item>
+    <item
+        jar="/Users/Abby/.gradle/caches/modules-2/files-2.1/com.squareup.dagger/dagger/1.2.2/e8f912ee19ad84958510883ea191135276b091f8/dagger-1.2.2.jar"
+        jumboMode="false"
+        revision="23.0.2"
+        sha1="e8f912ee19ad84958510883ea191135276b091f8">
+        <dex dex="/Users/Abby/Desktop/Info Security/info-security-project/app/build/intermediates/pre-dexed/debug/dagger-1.2.2_bc34856e02fd103dd0d2b6c81c4d7f3a395e0c3a.jar" />
+    </item>
+    <item
+        jar="/Users/Abby/Desktop/Info Security/info-security-project/app/build/intermediates/exploded-aar/com.android.support/recyclerview-v7/23.1.1/jars/classes.jar"
+        jumboMode="false"
+        revision="23.0.2"
+        sha1="09c5e804bc67fc0580360043dff067df574a60d4">
+        <dex dex="/Users/Abby/Desktop/Info Security/info-security-project/app/build/intermediates/pre-dexed/debug/com.android.support-recyclerview-v7-23.1.1_3d293c1bbedeead86699135b59aaea5ce5766d19.jar" />
+    </item>
+    <item
+        jar="/Users/Abby/Desktop/Info Security/info-security-project/app/build/intermediates/exploded-aar/com.android.support/design/23.1.1/jars/classes.jar"
+        jumboMode="false"
+        revision="23.0.2"
+        sha1="379471b2bd17d9737c050345c08e8c7d16589784">
+        <dex dex="/Users/Abby/Desktop/Info Security/info-security-project/app/build/intermediates/pre-dexed/debug/com.android.support-design-23.1.1_c39e052ce33dbc546e11dc231e6445088fbdd066.jar" />
+    </item>
+    <item
+        jar="/Users/Abby/Desktop/Info Security/info-security-project/app/build/intermediates/exploded-aar/com.android.support/support-v4/23.1.1/jars/classes.jar"
+        jumboMode="false"
+        revision="23.0.2"
+        sha1="6cbc7773921fcfedbe55657578f0cbfe614778dc">
+        <dex dex="/Users/Abby/Desktop/Info Security/info-security-project/app/build/intermediates/pre-dexed/debug/com.android.support-support-v4-23.1.1_0bf9cdde34da83e3597ec453de99bec1e7dc1146.jar" />
+    </item>
+    <item
+        jar="/Users/Abby/.gradle/caches/modules-2/files-2.1/com.google.guava/guava/15.0/ed727a8d9f247e2050281cb083f1c77b09dcb5cd/guava-15.0.jar"
+        jumboMode="false"
+        revision="23.0.2"
+        sha1="ed727a8d9f247e2050281cb083f1c77b09dcb5cd">
+        <dex dex="/Users/Abby/Desktop/Info Security/info-security-project/app/build/intermediates/pre-dexed/debug/guava-15.0_167bc83a53448fdd5ebd7cc80acf534cf86a6c17.jar" />
+    </item>
+    <item
+        jar="/Users/Abby/Desktop/Info Security/info-security-project/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/23.1.1/jars/classes.jar"
+        jumboMode="false"
+        revision="23.0.2"
+        sha1="5c5699834e9722f1c288fea2de82725d078ba127">
+        <dex dex="/Users/Abby/Desktop/Info Security/info-security-project/app/build/intermediates/pre-dexed/debug/com.android.support-appcompat-v7-23.1.1_af66393d2bfe22ea422223e1ec2745744d314a90.jar" />
+    </item>
+    <item
+        jar="/Users/Abby/.gradle/caches/modules-2/files-2.1/com.squareup.dagger/dagger-compiler/1.2.2/fa9b2f9ae597cedf2a66ef3e60662ff36bb60e57/dagger-compiler-1.2.2.jar"
+        jumboMode="false"
+        revision="23.0.2"
+        sha1="fa9b2f9ae597cedf2a66ef3e60662ff36bb60e57">
+        <dex dex="/Users/Abby/Desktop/Info Security/info-security-project/app/build/intermediates/pre-dexed/debug/dagger-compiler-1.2.2_d0fe972c533a176b2e8fa829e5bd483684c8902c.jar" />
+    </item>
+    <item
+        jar="/Users/Abby/Library/Android/sdk/extras/android/m2repository/com/android/support/support-annotations/23.1.1/support-annotations-23.1.1.jar"
+        jumboMode="false"
+        revision="23.0.2"
+        sha1="8d680ba5a623724d1fb0e81c36a790f023a6cede">
+        <dex dex="/Users/Abby/Desktop/Info Security/info-security-project/app/build/intermediates/pre-dexed/debug/support-annotations-23.1.1_a57b09aa499e3952c602ad8b1d26c068caf67a00.jar" />
+    </item>
+
+</items>
