@@ -22,10 +22,10 @@ import java.util.Calendar;
 
 public class CreatePassword extends AppCompatActivity {
     //Variables selected by user
-    int numUpperCase;
-    int numSpecial;
-    int numNumbers;
-    int passwordLength;
+    String numUpperCase;
+    String numSpecial;
+    String numNumbers;
+    String passwordLength;
     //Generated on user request, saved with entry
     String sentence;
     String password;
@@ -35,6 +35,8 @@ public class CreatePassword extends AppCompatActivity {
     EditText numsField;
     EditText lengthField;
     EditText sentenceField;
+    //valid fields flag
+    boolean valid = false;
     //Needed in order to add new password
     ArrayList<PasswordEntry> passwords = new ArrayList<>();
     private static final String CRYPT_KEY_NAME = "my_crypt_key";
@@ -84,7 +86,7 @@ public class CreatePassword extends AppCompatActivity {
         genSentence.setOnClickListener(new Button.OnClickListener() {
             public void onClick(View v) {
 
-                Log.d("Password creation --->","Generating sentence");
+                Log.d("Password creation --->", "Generating sentence");
                 generateSentence();
 
             }
@@ -95,9 +97,27 @@ public class CreatePassword extends AppCompatActivity {
         genPassword.setOnClickListener(new Button.OnClickListener() {
             public void onClick(View v) {
 
-                Log.d("Password creation --->","Generating password");
-                generatePassword();
+                upperField = (EditText) findViewById(R.id.txtNumUpperCase);
+                numUpperCase = upperField.getText().toString();
 
+                specialField = (EditText) findViewById(R.id.txtNumSpecialChars);
+                numSpecial = specialField.getText().toString();
+
+                numsField = (EditText) findViewById(R.id.txtNumNumbers);
+                numNumbers = numsField.getText().toString();
+
+                lengthField = (EditText) findViewById(R.id.txtPassLength);
+                passwordLength = lengthField.getText().toString();
+
+                sentenceField = (EditText) findViewById(R.id.txtSentence);
+                sentence = sentenceField.getText().toString();
+
+                valid = validate();
+
+                if (valid) {
+                    Log.d("Password creation --->", "Generating password");
+                    generatePassword();
+                }
             }
         });
     }
@@ -110,7 +130,7 @@ public class CreatePassword extends AppCompatActivity {
 
         try {
             //Save list as encrypted file
-            PasswordFile.encryptStore(getApplicationContext(), "WhiteWizard2", Arrays.copyOfRange(getKey(),0,16), passwords);
+            PasswordFile.encryptStore(getApplicationContext(), "WhiteWizard2", Arrays.copyOfRange(getKey(), 0, 16), passwords);
         } catch(Exception e){
             //Should not get here
             Log.e("Sore Passwords", "Was not able to write the entry to file");
@@ -130,7 +150,7 @@ public class CreatePassword extends AppCompatActivity {
         try {
             KeyStore.SecretKeyEntry secretKeyEntry = (KeyStore.SecretKeyEntry) mKeyStore.getEntry(CRYPT_KEY_NAME, null);
             secretKey = secretKeyEntry.getSecretKey();
-            Log.d("Key", Base64.encodeToString(convertToBytes(secretKey),Base64.DEFAULT));
+            Log.d("Key", Base64.encodeToString(convertToBytes(secretKey), Base64.DEFAULT));
             return convertToBytes(secretKey);
         }catch (Exception e){
             Log.e("getKey: ", Log.getStackTraceString(e));
@@ -176,28 +196,69 @@ public class CreatePassword extends AppCompatActivity {
         sentenceField.setText(sentence);
     }
 
+    public boolean validate(){
+        boolean test = true;
+        boolean sentence_empty = false;
+        boolean length_empty = false;
+        String message = "Please ";
+
+        if (sentence.matches("")) {
+            test &= false;
+            sentence_empty = true;
+            message = message + "enter or generate a sentence ";
+        }
+
+        if (!sentence_empty) {
+            if (passwordLength.matches("")) {
+                test &= false;
+                length_empty = true;
+                message = message + "enter a password length, ";
+            } else if (Integer.parseInt(passwordLength) > sentence.length()) {
+                test &= false;
+                message = message + "make the length shorter than the sentence, ";
+            }
+            if (!length_empty) {
+                if (numUpperCase.matches("")) {
+                    test &= false;
+                    message = message + "enter number of capitals, ";
+                } else if (Integer.parseInt(numUpperCase) > Integer.parseInt(passwordLength)) {
+                    test &= false;
+                    message = message + "make the number of capitals less than the length, ";
+                }
+
+                if (numSpecial.matches("")) {
+                    test &= false;
+                    message = message + "enter number of special characters, ";
+                } else if (Integer.parseInt(numSpecial) > Integer.parseInt(passwordLength)) {
+                    test &= false;
+                    message = message + "make the number of special characters less than the length, ";
+                }
+
+                if (numNumbers.matches("")) {
+                    test &= false;
+                    message = message + "enter number of numbers ";
+                }
+            }
+        }
+
+        message = message + "and try again.";
+
+        if (!test) {
+            Toast.makeText(getApplicationContext(), message, Toast.LENGTH_LONG).show();
+        }
+
+        return test;
+    }
+
     public void generatePassword(){
-        upperField = (EditText) findViewById(R.id.txtNumUpperCase);
-        numUpperCase = Integer.parseInt(upperField.getText().toString());
-
-        specialField = (EditText) findViewById(R.id.txtNumSpecialChars);
-        numSpecial = Integer.parseInt(specialField.getText().toString());
-
-        numsField = (EditText) findViewById(R.id.txtNumNumbers);
-        numNumbers = Integer.parseInt(numsField.getText().toString());
-
-        lengthField = (EditText) findViewById(R.id.txtPassLength);
-        passwordLength = Integer.parseInt(lengthField.getText().toString());
-
-        sentenceField = (EditText) findViewById(R.id.txtSentence);
-        sentence = sentenceField.getText().toString();
-
         Log.d("Password creation --->","calling create password");
-        password = GeneratePassword.createPassword(sentence, passwordLength, numUpperCase, numNumbers, numSpecial);
+        password = GeneratePassword.createPassword(sentence, Integer.parseInt(passwordLength),
+                Integer.parseInt(numUpperCase), Integer.parseInt(numNumbers), Integer.parseInt(numSpecial));
         Log.d("Password creation --->", password);
         TextView resultField = (TextView) findViewById(R.id.txtPassword);
         resultField.setText(password);
     }
+
 
     public void goToPasswordViewer(){
         Intent intent = new Intent(this, PasswordViewer.class);
