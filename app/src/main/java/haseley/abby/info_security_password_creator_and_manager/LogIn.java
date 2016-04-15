@@ -80,8 +80,8 @@ public class LogIn extends AppCompatActivity {
             //present view to set the initial password
             makeCryptKey();
             Log.d("firstrun", "Creating crypt key");
-            getFragmentManager().beginTransaction().replace(android.R.id.content,
-                    new ChangePassword()).commit();
+            Intent intent = new Intent(this, ChangePassword.class);
+            startActivity(intent);
 
             mSharedPreferences.edit().putBoolean("firstrun", false).apply();
         }
@@ -252,8 +252,9 @@ public class LogIn extends AppCompatActivity {
             startActivity(intent);
             return true;
         }else if (id == R.id.action_change_password){
-            getFragmentManager().beginTransaction().replace(android.R.id.content,
-                    new ChangePassword()).commit();
+            Toast.makeText(this,
+                    "Please log in to change password",
+                    Toast.LENGTH_LONG).show();
         }
 
         return super.onOptionsItemSelected(item);
