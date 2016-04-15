@@ -9,6 +9,7 @@ import android.security.keystore.KeyGenParameterSpec;
 import android.security.keystore.KeyProperties;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.util.Base64;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -16,6 +17,9 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.Toast;
 
+import java.io.ByteArrayOutputStream;
+import java.io.ObjectOutput;
+import java.io.ObjectOutputStream;
 import java.security.KeyStore;
 
 import javax.crypto.Cipher;
@@ -39,7 +43,8 @@ public class LogIn extends AppCompatActivity {
     private static final String DIALOG_FRAGMENT_TAG = "myFragment";
 
     /** Alias for our key in the Android Key Store */
-    private static final String KEY_NAME = "my_key";
+    private static final String FINGER_KEY_NAME = "my_finger_key";
+    private static final String CRYPT_KEY_NAME = "my_crypt_key";
 
     @Inject KeyguardManager mKeyguardManager;
     @Inject FingerprintManager mFingerprintManager;
@@ -97,11 +102,13 @@ public class LogIn extends AppCompatActivity {
         if(isFirstRun()){
             //present view to set the initial password
             String password = "1234"; //TODO: make it so a view updates this field
-            mSharedPreferences.edit().putString("stored_key", password).commit();
-            mSharedPreferences.edit().putBoolean("firstrun", false).commit();
+            makeCryptKey();
+            Log.d("firstrun", "Creating crypt key");
+            mSharedPreferences.edit().putString("stored_key", password).apply();
+            mSharedPreferences.edit().putBoolean("firstrun", false).apply();
         }
 
-        makeKey();
+        makeFingerKey();
         FingerPrintButton.setEnabled(true);
         FingerPrintButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -134,11 +141,43 @@ public class LogIn extends AppCompatActivity {
         return mSharedPreferences.getBoolean("firstrun", true);
     }
 
-    public void makeKey() {
+    public byte[] getKey(){
+        Object secretKey = null;
+        try {
+            KeyStore.SecretKeyEntry secretKeyEntry = (KeyStore.SecretKeyEntry) mKeyStore.getEntry(CRYPT_KEY_NAME, null);
+            secretKey = secretKeyEntry.getSecretKey();
+            Log.d("Key from login: ", Base64.encodeToString(convertToBytes(secretKey),Base64.DEFAULT));
+            return convertToBytes(secretKey);
+        }catch (Exception e){
+            Log.e("getKey: ", Log.getStackTraceString(e));
+            return null;
+        }
+    }
+
+    public void makeCryptKey(){
         try {
             mKeyStore.load(null);
+            mKeyGenerator.init(new KeyGenParameterSpec.Builder(CRYPT_KEY_NAME,
+                    KeyProperties.PURPOSE_ENCRYPT |
+                            KeyProperties.PURPOSE_DECRYPT)
+                    .setBlockModes(KeyProperties.BLOCK_MODE_CBC)
+                    .setEncryptionPaddings(KeyProperties.ENCRYPTION_PADDING_PKCS7)
+                    .build());
+            mKeyGenerator.generateKey();
+        }catch (NoSuchAlgorithmException | InvalidAlgorithmParameterException
+                | CertificateException | IOException e) {
+            throw new RuntimeException(e);
+        }
+
+        return;
+    }
+
+    public void makeFingerKey() {
+        try {
+
+            mKeyStore.load(null);
             // Set the alias of the entry in Android KeyStore where the key will appear
-            mKeyGenerator.init(new KeyGenParameterSpec.Builder(KEY_NAME,
+            mKeyGenerator.init(new KeyGenParameterSpec.Builder(FINGER_KEY_NAME,
                     KeyProperties.PURPOSE_ENCRYPT |
                             KeyProperties.PURPOSE_DECRYPT)
                     .setBlockModes(KeyProperties.BLOCK_MODE_CBC)
@@ -146,15 +185,16 @@ public class LogIn extends AppCompatActivity {
                     .setEncryptionPaddings(KeyProperties.ENCRYPTION_PADDING_PKCS7)
                     .build());
             mKeyGenerator.generateKey();
+
         } catch (NoSuchAlgorithmException | InvalidAlgorithmParameterException
-                | CertificateException | IOException e) {
+                | CertificateException | IOException  e) {
             throw new RuntimeException(e);
         }
     }
     private boolean initCipher() {
         try {
             mKeyStore.load(null);
-            SecretKey key = (SecretKey) mKeyStore.getKey(KEY_NAME, null);
+            SecretKey key = (SecretKey) mKeyStore.getKey(FINGER_KEY_NAME, null);
             mCipher.init(Cipher.ENCRYPT_MODE, key);
             return true;
         } catch (KeyPermanentlyInvalidatedException e) {
@@ -162,6 +202,14 @@ public class LogIn extends AppCompatActivity {
         } catch (KeyStoreException | CertificateException | UnrecoverableKeyException | IOException
                 | NoSuchAlgorithmException | InvalidKeyException e) {
             throw new RuntimeException("Failed to init Cipher", e);
+        }
+    }
+
+    private byte[] convertToBytes(Object object) throws IOException {
+        try (ByteArrayOutputStream bos = new ByteArrayOutputStream();
+             ObjectOutput out = new ObjectOutputStream(bos)) {
+            out.writeObject(object);
+            return bos.toByteArray();
         }
     }
     public void onAuth(boolean withFingerprint) {

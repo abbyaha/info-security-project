@@ -3,6 +3,7 @@ package haseley.abby.info_security_password_creator_and_manager;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Base64;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
@@ -10,7 +11,13 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import java.io.ByteArrayOutputStream;
+import java.io.IOException;
+import java.io.ObjectOutput;
+import java.io.ObjectOutputStream;
+import java.security.KeyStore;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Calendar;
 
 public class CreatePassword extends AppCompatActivity {
@@ -30,6 +37,8 @@ public class CreatePassword extends AppCompatActivity {
     EditText sentenceField;
     //Needed in order to add new password
     ArrayList<PasswordEntry> passwords = new ArrayList<>();
+    private static final String CRYPT_KEY_NAME = "my_crypt_key";
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -101,9 +110,38 @@ public class CreatePassword extends AppCompatActivity {
 
         try {
             //Save list as encrypted file
-            PasswordFile.encryptStore(getApplicationContext(), "WhiteWizard2", "MyDifficultPassw", passwords);
+            PasswordFile.encryptStore(getApplicationContext(), "WhiteWizard2", Arrays.copyOfRange(getKey(),0,16), passwords);
         } catch(Exception e){
             //Should not get here
+            Log.e("Sore Passwords", "Was not able to write the entry to file");
+        }
+    }
+
+    public byte[] getKey(){
+        KeyStore mKeyStore;
+        try {
+            mKeyStore = KeyStore.getInstance("AndroidKeyStore");
+            mKeyStore.load(null);
+        } catch (Exception e) {
+            throw new RuntimeException("Failed to get an instance of KeyStore", e);
+        }
+
+        Object secretKey = null;
+        try {
+            KeyStore.SecretKeyEntry secretKeyEntry = (KeyStore.SecretKeyEntry) mKeyStore.getEntry(CRYPT_KEY_NAME, null);
+            secretKey = secretKeyEntry.getSecretKey();
+            Log.d("Key", Base64.encodeToString(convertToBytes(secretKey),Base64.DEFAULT));
+            return convertToBytes(secretKey);
+        }catch (Exception e){
+            Log.e("getKey: ", Log.getStackTraceString(e));
+            return null;
+        }
+    }
+    private byte[] convertToBytes(Object object) throws IOException {
+        try (ByteArrayOutputStream bos = new ByteArrayOutputStream();
+             ObjectOutput out = new ObjectOutputStream(bos)) {
+            out.writeObject(object);
+            return bos.toByteArray();
         }
     }
 
@@ -111,7 +149,7 @@ public class CreatePassword extends AppCompatActivity {
     private void getPasswordsFromFile(){
         try {
             //Decrypt the password list
-            passwords = PasswordFile.decryptStore(getApplicationContext(), "WhiteWizard2", "MyDifficultPassw");
+            passwords = PasswordFile.decryptStore(getApplicationContext(), "WhiteWizard2",Arrays.copyOfRange(getKey(),0,16));
         } catch(Exception e){
             //Should not get here
         }

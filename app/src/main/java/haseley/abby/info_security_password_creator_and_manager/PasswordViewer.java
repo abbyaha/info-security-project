@@ -4,6 +4,7 @@ import android.app.ListActivity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
+import android.util.Base64;
 import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
@@ -11,7 +12,13 @@ import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import android.widget.TextView;
 
+import java.io.ByteArrayOutputStream;
+import java.io.IOException;
+import java.io.ObjectOutput;
+import java.io.ObjectOutputStream;
+import java.security.KeyStore;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Calendar;
 import java.util.List;
 
@@ -20,6 +27,7 @@ public class PasswordViewer extends ListActivity {
     List<PasswordEntry> passwords = new ArrayList<>();
     //List view to load passwords into
     ListView listView;
+    private static final String CRYPT_KEY_NAME = "my_crypt_key";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -62,6 +70,35 @@ public class PasswordViewer extends ListActivity {
                 goToPasswordCreator();
             }
         });
+    }
+    public byte[] getKey(){
+        KeyStore mKeyStore;
+        try {
+            mKeyStore = KeyStore.getInstance("AndroidKeyStore");
+            mKeyStore.load(null);
+        } catch (Exception e) {
+            throw new RuntimeException("Failed to get an instance of KeyStore", e);
+        }
+
+        Object secretKey = null;
+        try {
+            KeyStore.SecretKeyEntry secretKeyEntry = (KeyStore.SecretKeyEntry) mKeyStore.getEntry(CRYPT_KEY_NAME, null);
+            secretKey = secretKeyEntry.getSecretKey();
+            Log.d("Key in get key: ", Base64.encodeToString(convertToBytes(secretKey),Base64.DEFAULT));
+
+            return convertToBytes(secretKey);
+        }catch (Exception e){
+            Log.e("getKey: ", Log.getStackTraceString(e));
+            return null;
+        }
+    }
+
+    private byte[] convertToBytes(Object object) throws IOException {
+        try (ByteArrayOutputStream bos = new ByteArrayOutputStream();
+             ObjectOutput out = new ObjectOutputStream(bos)) {
+            out.writeObject(object);
+            return bos.toByteArray();
+        }
     }
 
     //Turns the date string into a 6-element array of numbers
@@ -209,9 +246,10 @@ public class PasswordViewer extends ListActivity {
     private void getPasswordsFromFile(){
         try {
             //Decrypt password list
-            passwords = PasswordFile.decryptStore(getApplicationContext(), "WhiteWizard2", "MyDifficultPassw");
+            passwords = PasswordFile.decryptStore(getApplicationContext(), "WhiteWizard2",  Arrays.copyOfRange(getKey(),0,16));
         } catch(Exception e){
             //Shouldn't get here
+            Log.e("Reading Passwords", "Could not read passwords from file");
         }
     }
 
