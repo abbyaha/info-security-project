@@ -94,7 +94,7 @@ public class LogIn extends AppCompatActivity {
                     "Secure lock screen hasn't set up.\n"
                             + "Go to 'Settings -> Security -> Fingerprint' to set up a fingerprint",
                     Toast.LENGTH_LONG).show();
-            FingerPrintButton.setEnabled(false);
+            FingerPrintButton.setEnabled(true);
             return;
         }
 
@@ -105,7 +105,7 @@ public class LogIn extends AppCompatActivity {
             Toast.makeText(this,
                     "Go to 'Settings -> Security -> Fingerprint' and register at least one fingerprint",
                     Toast.LENGTH_LONG).show();
-            FingerPrintButton.setEnabled(false);
+            FingerPrintButton.setEnabled(true);
             return;
         }
         Log.d("Finger", "No fingerprint errors");
