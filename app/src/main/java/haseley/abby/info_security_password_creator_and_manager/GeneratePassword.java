@@ -94,7 +94,7 @@ public class GeneratePassword {
 
         //Inserts the specified number of random numbers randomly into the password.
         for(int j = 0; j < nums; j++){
-            int rand = rn.nextInt(10) + 1;
+            int rand = rn.nextInt(9) + 1;
             int insert = rn.nextInt(new_sent.length() - 1);
             new_sent = new_sent.substring(0, insert) + Integer.toString(rand) + new_sent.substring(insert);
         }
