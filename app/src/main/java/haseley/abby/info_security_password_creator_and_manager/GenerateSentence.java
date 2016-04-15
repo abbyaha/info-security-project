@@ -8,133 +8,88 @@ import java.util.Random;
  */
 public class GenerateSentence {
 
-    static String[] conjunction = {"and", "or", "but", "because", "for", "nor", "so", "yet", "after", "even if"};
-    static String[] proper_noun = {"Joanna", "Abby", "Jamie", "Michael", "Daniele", "Stephen", "Jeffery"};
-    static String[] common_noun = {"man", "woman", "fish", "elephant", "dog", "person"};
-    static String[] determiner = {"a", "the", "every", "some"};
-    static String[] adjective = {"big", "tiny", "pretty", "bald"};
-    static String[] intransitive_verb = {"runs", "jumps", "talks", "sleeps"};
-    static String[] transitive_verb = {"loves", "hates", "sees", "knows", "looks for", "finds"};
-    static String[] adverb = {"quickly", "uneasily", "firmly", "abruptly", "wearily", "kindly"};
-    static String[] possessive = {"his", "hers", "theirs"};
-    static String[] infinitive = {"to walk", "to come over", "to go", "to cry", "to realize"};
-    static String[] verb_array = {"runs", "walks", "sits", "cries", "dances"};
-    static String[] movement = {"to", "from", "near", "back to", "away from", "over"};
-
     static Random rn = new Random();
 
     public static String createSentence(){
         String sentence = "";
+        String proper_noun = "";
+        String common_noun = "";
+        String verb = "";
+        String adverb = "";
+        String adj = "";
+        String art = "";
+        String conj = "";
+        String prep = "";
+        String plur = "is";
 
-        int sentence_type = rn.nextInt(1) + 1;
+        int choose = rn.nextInt(5) + 1;
+        //choose = 1;
 
-        switch (sentence_type) {
+        switch (choose) {
             case 1 :
-                sentence = getProperNoun() + " " + getAdverb() + " " + getVerb() + " " +
-                        getPlace() + " " + getDeterminer() + " " + getCommonNoun();
+                //abby loves to see buildings
+                proper_noun = Words.pNoun();
+                verb = Words.verb();
+                if (verb.charAt(verb.length() - 1) != 's') {
+                    verb = verb + "s";
+                }
+                String verb2 = Words.verb();
+                if (verb2.charAt(verb2.length() - 1) == 's') {
+                    verb2 = verb2.substring(0, verb2.length()-1);
+                }
+                common_noun = Words.cNoun();
+                if (common_noun.charAt(common_noun.length() - 1) != 's') {
+                    common_noun = common_noun + "s";
+                }
+
+                sentence = proper_noun + " " + verb + " to " + verb2 + " " + common_noun;
+                break;
+            case 2 :
+                //the dog is very nice
+                art = Words.article();
+                common_noun = Words.cNoun();
+                if (common_noun.charAt(common_noun.length() - 1) == 's') {
+                    plur = "are";
+                }
+                adverb = Words.adverb();
+                adj = Words.adjective();
+
+                sentence = art + " " + common_noun + " " + plur + " " + adverb + " " + adj;
+                break;
+            case 3 :
+                //however the phone is quite good
+                conj = Words.conjunction();
+                art = Words.article();
+                common_noun = Words.cNoun();
+                if (common_noun.charAt(common_noun.length() - 1) == 's') {
+                    plur = "are";
+                }
+                adverb = Words.adverb();
+                adj = Words.adjective();
+
+                sentence = conj + " " + art + " " + common_noun + " " + plur + " " + adverb + " " + adj;
+                break;
+            case 4 :
+                //
+                proper_noun = Words.pNoun();
+                String prop_noun2 = Words.pNoun();
+                verb = Words.verb();
+                if (verb.charAt(verb.length() - 1) == 's') {
+                    verb = verb.substring(0, verb.length()-1);
+                }
+                String verb_2 = Words.verb();
+                if (verb_2.charAt(verb_2.length() - 1) == 's') {
+                    verb_2 = verb_2.substring(0, verb_2.length()-1);
+                }
+
+                sentence = proper_noun + " and " + prop_noun2 + " " + verb + " to " + verb_2;
+                break;
+            default:
+                sentence = "this app is the coolest";
                 break;
         }
 
         return sentence;
-    }
-
-    public static String getCommonNoun(){
-        String noun;
-
-        int new_rand = rn.nextInt(common_noun.length);
-        noun = common_noun[new_rand];
-
-        return noun;
-    }
-
-    public static String getProperNoun(){
-        String noun;
-
-        int new_rand = rn.nextInt(proper_noun.length);
-        noun = proper_noun[new_rand];
-
-        return noun;
-    }
-
-    public static String getConjunction(){
-        String conj;
-
-        int rand = rn.nextInt(conjunction.length);
-        conj = conjunction[rand];
-
-        return conj;
-    }
-
-    public static String getDeterminer(){
-        String det;
-
-        int rand = rn.nextInt(determiner.length);
-        det = determiner[rand];
-
-        return det;
-    }
-
-    public static String getAdjective(){
-        String adj;
-
-        int rand = rn.nextInt(adjective.length);
-        adj = adjective[rand];
-
-        return adj;
-    }
-
-    public static String getInVerb(){
-        String verb;
-
-        int rand = rn.nextInt(intransitive_verb.length);
-        verb = intransitive_verb[rand];
-
-        return verb;
-    }
-
-    public static String getTVerb(){
-        String verb;
-
-        int rand = rn.nextInt(transitive_verb.length);
-        verb = transitive_verb[rand];
-
-        return verb;
-    }
-
-    public static String getAdverb(){
-        String a_verb;
-
-        int rand = rn.nextInt(adverb.length);
-        a_verb = adverb[rand];
-
-        return a_verb;
-    }
-
-    public static String getInfinitive(){
-        String inf;
-
-        int rand = rn.nextInt(infinitive.length);
-        inf = infinitive[rand];
-
-        return inf;
-    }
-
-    public static String getVerb(){
-        String verb;
-
-        int rand = rn.nextInt(verb_array.length);
-        verb = verb_array[rand];
-
-        return verb;
-    }
-
-    public static String getPlace(){
-        String place;
-
-        int rand = rn.nextInt(movement.length);
-        place = movement[rand];
-
-        return place;
     }
 
 }
