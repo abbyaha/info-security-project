@@ -11,18 +11,23 @@
     <EditText
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:inputType="textPassword"
         android:ems="10"
         android:id="@+id/password"
 
-        android:hint="Password" />
+        android:hint="Password"
+        android:layout_above="@+id/change_button"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="45dp"
+        android:inputType="text" />
 
     <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Change Password"
         android:id="@+id/change_button"
-        android:layout_below="@+id/password" />
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="34dp" />
 
     <TextView
         android:layout_width="wrap_content"

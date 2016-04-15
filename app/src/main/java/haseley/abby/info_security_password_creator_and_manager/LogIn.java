@@ -78,10 +78,11 @@ public class LogIn extends AppCompatActivity {
 
         if(isFirstRun()){
             //present view to set the initial password
-            String password = "1234"; //TODO: make it so a view updates this field
             makeCryptKey();
             Log.d("firstrun", "Creating crypt key");
-            mSharedPreferences.edit().putString("stored_key", password).apply();
+            getFragmentManager().beginTransaction().replace(android.R.id.content,
+                    new ChangePassword()).commit();
+
             mSharedPreferences.edit().putBoolean("firstrun", false).apply();
         }
 

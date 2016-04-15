@@ -26,6 +26,8 @@
             android:label="@string/title_activity_password_viewer"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity android:name=".PasswordDetails"></activity>
+        <activity android:name=".ChangePassword"></activity>
+
         <activity
             android:name=".SettingsActivity"
             android:label="@string/action_settings" />

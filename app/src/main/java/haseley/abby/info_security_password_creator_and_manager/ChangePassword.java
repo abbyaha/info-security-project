@@ -1,6 +1,7 @@
 package haseley.abby.info_security_password_creator_and_manager;
 
 import android.app.Fragment;
+import android.preference.PreferenceManager;
 import android.view.View;
 import android.app.KeyguardManager;
 import android.content.Intent;
@@ -72,23 +73,19 @@ public class ChangePassword extends Fragment {
             public void onClick(View v) {
                 change();
                 Log.d("Change", "Change password");
-
             }
         });
         return rootView;
     }
 
-    public void change()
-    {
+    public void change(){
         EditText pass = (EditText)getActivity().findViewById(R.id.password);
         String password = pass.getText().toString();
-        //mSharedPreferences.edit().putString("stored_key", password).apply();
+        mSharedPreferences = PreferenceManager.getDefaultSharedPreferences(getActivity());
+        mSharedPreferences.edit().putString("stored_key", password).apply();
         Log.d("Password", "Password is: " + password);
-        getActivity().finish();
-
+        getActivity().getFragmentManager().beginTransaction().remove(this).commit();
     }
-
-
 }
 
 
