@@ -34,14 +34,14 @@ public class GeneratePassword {
 
         //Make array of words
         String[] words = sentence.split(" ");
-        int total = sentence.length() - counter - nums;
+        int total = sentence.length() - counter;
 
         //Move through the sentence array start to finish and shorten each word, starting on the end
         //and moving to the start of each word to maintain some word integrity. It will then move to
         //deleting single letter words if it still needs to get the length requirement.
         String current_word = words[words_index];
         int i = 0;
-        while (i < (total - length)) {
+        while (i < (total - length + nums)) {
             if (current_word.length() > 1) {
                 words[words_index] = shorten(current_word);
                 i++;
