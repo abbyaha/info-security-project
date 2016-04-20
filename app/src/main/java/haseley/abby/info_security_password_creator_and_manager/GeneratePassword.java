@@ -32,6 +32,8 @@ public class GeneratePassword {
             }
         }
 
+        sentence = sentence.toLowerCase();
+
         //Make array of words
         String[] words = sentence.split(" ");
         int total = sentence.length() - counter;
